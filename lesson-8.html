@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 8 — Standing on its own — Learn Nifla</title>
+<meta name="description" content="Lesson 8 of the Nifla tutorial: Standing on its own. Read it, run every example on the page, then take your turn.">
+<meta property="og:title" content="Lesson 8 — Standing on its own — Learn Nifla">
+<meta property="og:description" content="Lesson 8 of the Nifla tutorial: Standing on its own. Read it, run every example on the page, then take your turn.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lesson 8 — Standing on its own — Learn Nifla">
+<meta name="twitter:description" content="Lesson 8 of the Nifla tutorial: Standing on its own. Read it, run every example on the page, then take your turn.">
+<meta name="twitter:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #fdfbf7; color: #1d2733; line-height: 1.55; }
+main { max-width: 44rem; margin: 0 auto; padding: 1rem 1.1rem 3rem; }
+h1 { font-size: 1.7rem; line-height: 1.25; }
+h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+h3 { font-size: 1.12rem; margin-top: 1.8rem; }
+p { margin: 0.7rem 0; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92em; background: #eef1f4; padding: 0.05em 0.3em; border-radius: 4px; }
+.topbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between; padding: 0.7rem 1.1rem; background: #12355f; }
+.topbar a { color: #fff; text-decoration: none; }
+.homebtn { background: #fff; color: #12355f !important; font-weight: bold; padding: 0.35rem 0.8rem; border-radius: 999px; }
+.sitenav { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.95rem; }
+.sitenav a { text-decoration: underline; }
+.runbox { border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem; margin: 1rem 0; background: #fff; }
+.runbox textarea.code { width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.45; border: 1px solid #d7dee6; border-radius: 6px; padding: 0.55rem; background: #f7f9fb; color: #10233c; resize: vertical; }
+.runrow { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.55rem; }
+.runbtn { background: #12355f; color: #fff; border: 0; border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.98rem; cursor: pointer; }
+.runbtn:active { background: #0c2747; }
+.runhint { font-size: 0.85rem; color: #5a6a7a; }
+.runbox .out { margin: 0.6rem 0 0; background: #10233c; color: #d9f2d9; border-radius: 6px; padding: 0.55rem 0.7rem; white-space: pre-wrap; word-break: break-word; font-size: 0.92rem; }
+.runbox .out.err { background: #3c1414; color: #ffd9d9; }
+.expected { margin-top: 0.6rem; }
+.expected-label { margin: 0 0 0.25rem; font-size: 0.85rem; color: #5a6a7a; }
+.expected pre { margin: 0; background: #f1f4ec; border: 1px dashed #b9c4a8; border-radius: 6px; padding: 0.5rem 0.7rem; white-space: pre-wrap; font-size: 0.92rem; }
+pre.codeblock { background: #10233c; color: #e8eef4; border-radius: 8px; padding: 0.7rem 0.8rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.45; }
+.note { font-size: 0.9rem; color: #5a6a7a; font-style: italic; }
+details.answer { margin: 0.6rem 0 1rem; }
+details.answer summary { cursor: pointer; color: #12355f; font-weight: bold; }
+.lessonlist { list-style: none; padding: 0; }
+.lessonlist li { margin: 0.55rem 0; }
+.lessonlist a { display: block; background: #fff; border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem 0.9rem; color: #12355f; text-decoration: none; font-weight: bold; }
+.lessonlist a span { display: block; font-weight: normal; color: #5a6a7a; font-size: 0.9rem; margin-top: 0.15rem; }
+.prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; }
+.prevnext a { color: #12355f; }
+footer { max-width: 44rem; margin: 0 auto; padding: 0 1.1rem 2rem; font-size: 0.88rem; color: #5a6a7a; }
+</style>
+</head>
+<body>
+<div class="topbar">
+<a class="homebtn" href="https://jesuslovestyler.com/">⌂ Home</a>
+<nav class="sitenav">
+<a href="index.html">Lessons</a>
+<a href="try.html">Try Nifla</a>
+</nav>
+</div>
+<main>
+<h1>Lesson 8 — Standing on its own</h1>
+<h3>Step 1: compiling</h3>
+<p>So far, <code>nifla</code> has run every program: it checks the program, then interprets it, line by line, itself. That is the kindest way to learn — but a program you want to <em>hand to someone</em> should stand on its own. That is <code>niflac</code>'s work: it checks the program the same way, then compiles it into a program of its own, which runs with no interpreter beside it:</p>
+<pre class="codeblock">./niflac greeter.nifla -o greeter
+./greeter Ada Byron</pre>
+<p>Compiled programs behave exactly as interpreted ones — same words, same refusals, same output — because the checker and the meaning are shared. (This book's proof holds every example to that: each is run both ways, and the outputs must agree.)</p>
+<p>Feel what just happened, because it is the second half of the promise this book made in its opening. The <em>words</em> did not change — not one letter. What changed is what stands underneath them: the interpreter stepped aside, and the program now stands on its own, checked ahead of time and built to run at full strength. Written like JavaScript; running like Swift. Same language, both halves — and you have now held each one.</p>
+<h3>Step 2: the words the program was run with</h3>
+<p>A program that stands on its own usually wants to know what it was run <em>with</em>. <code>arguments()</code> gives the list of words that came after the program's name on the command line. You have been using it since Lesson 6; here is its close-up:</p>
+<div class="runbox">
+<textarea class="code" rows="4" spellcheck="false" aria-label="Nifla program">let args = arguments()
+say "You brought " + length(args) + " word(s)."
+say "First: " + args[0]
+say join(args, " and ")</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>You brought 2 word(s).
+First: Ada
+Ada and Byron</pre></div>
+</div>
+<p>This book's proof runs every example with the arguments <code>Ada</code> and <code>Byron</code>, which is why this program greets them. On your machine, run your own copy with your own name and see it greet you instead.</p>
+<p><strong>Your turn.</strong> Say the <em>second</em> word you were run with, with "Second: " in front of it.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="2" spellcheck="false" aria-label="Nifla program">let args = arguments()
+say "Second: " + args[1]</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Second: Byron</pre></div>
+</div></details>
+<h3>Step 3: how a program ends</h3>
+<p>A standalone program also reports <em>how it ended</em>. When a program simply finishes, it hands back the number 0 — the number for "all went well". <code>exitwith(code)</code> ends a program early, handing back a number of your choosing; any number but 0 says something didn't go as hoped, and whoever ran your program can ask for the number and act on it:</p>
+<div class="runbox">
+<textarea class="code" rows="3" spellcheck="false" aria-label="Nifla program">say "Starting"
+exitwith(3)
+say "Never reached"</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Starting</pre></div>
+</div>
+<p>The second <code>say</code> is never reached, and the 3 travels back to whoever ran the program. Lesson 9's doorman uses exactly this honesty: <code>feathercheck</code> answers 0 for a true card and 1 for a false one, so a script can ask "was it true?" without reading a word.</p>
+<p><strong>Your turn.</strong> Say "Opening the gate.", end with <code>exitwith(2)</code>, and put a <code>say</code> after it that will never be reached.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="3" spellcheck="false" aria-label="Nifla program">say "Opening the gate."
+exitwith(2)
+say "Never reached"</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Opening the gate.</pre></div>
+</div></details>
+<h3>The ledger grows: the book, compiled</h3>
+<p>The ledger is ready to stand on its own. The whole book so far — gifts, tools, total — compiled once and run like any other program. And because a standalone program can be handed words, the book can greet its keeper:</p>
+<div class="runbox">
+<textarea class="code" rows="15" spellcheck="false" aria-label="Nifla program">make addgift(gifts, who, cents) {
+    append(gifts, { who: who, cents: cents })
+}
+make total(gifts) {
+    let sum = 0
+    for gift in gifts {
+        sum = sum + gift.cents
+    }
+    give sum
+}
+let gifts = []
+addgift(gifts, "Feeding America", 620)
+addgift(gifts, "Barry Cunningham", 500)
+say arguments()[0] + " keeps this book."
+say "Total: " + total(gifts) + " cents"</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Ada keeps this book.
+Total: 1120 cents</pre></div>
+</div>
+<p>On your machine you would compile it once —</p>
+<pre class="codeblock">./niflac ledger.nifla -o ledger
+./ledger Tyler</pre>
+<p>— and it would answer "Tyler keeps this book." The proof runs it with Ada, as everywhere in this book.</p>
+<h3>Your turn</h3>
+<p>Write a program that says the words it was run with, joined with " + ", and then — if it was brought fewer than 2 words — ends early with <code>exitwith(1)</code>. Otherwise it says "Enough words." (This book's proof brings two words, so you will see the second road.)</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="6" spellcheck="false" aria-label="Nifla program">let args = arguments()
+say join(args, " + ")
+if length(args) &lt; 2 {
+    exitwith(1)
+}
+say "Enough words."</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Ada + Byron
+Enough words.</pre></div>
+</div></details>
+<h3>You can now…</h3>
+<ul><li>compile a program with <code>niflac</code> so it stands on its</li></ul>
+<p>  own, behaving exactly as it did interpreted;</p>
+<ul><li>read the words a program was run with, through</li></ul>
+<p>  <code>arguments()</code>;</p>
+<ul><li>end a program early with <code>exitwith</code>, and say how it</li></ul>
+<p>  ended in a number — 0 for "all went well".</p>
+<p>---</p>
+<div class="prevnext"><a href="lesson-7.html">← Lesson 7: When things go wrong</a><a href="lesson-9.html">Lesson 9: Your first feather →</a></div>
+</main>
+<footer>
+<p>Nifla is a public-domain programming language by Tyler Kovalevich — programmed like JavaScript, runs like Swift, all the way down to an operating system. The language, this site, and everything on it are given away freely.</p>
+</footer>
+<script src="nifla.js"></script>
+<script src="site.js"></script>
+<script data-goatcounter="https://jesuslovestyler.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

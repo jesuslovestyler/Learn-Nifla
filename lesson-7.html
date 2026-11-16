@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 7 — When things go wrong — Learn Nifla</title>
+<meta name="description" content="Lesson 7 of the Nifla tutorial: When things go wrong. Read it, run every example on the page, then take your turn.">
+<meta property="og:title" content="Lesson 7 — When things go wrong — Learn Nifla">
+<meta property="og:description" content="Lesson 7 of the Nifla tutorial: When things go wrong. Read it, run every example on the page, then take your turn.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lesson 7 — When things go wrong — Learn Nifla">
+<meta name="twitter:description" content="Lesson 7 of the Nifla tutorial: When things go wrong. Read it, run every example on the page, then take your turn.">
+<meta name="twitter:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #fdfbf7; color: #1d2733; line-height: 1.55; }
+main { max-width: 44rem; margin: 0 auto; padding: 1rem 1.1rem 3rem; }
+h1 { font-size: 1.7rem; line-height: 1.25; }
+h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+h3 { font-size: 1.12rem; margin-top: 1.8rem; }
+p { margin: 0.7rem 0; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92em; background: #eef1f4; padding: 0.05em 0.3em; border-radius: 4px; }
+.topbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between; padding: 0.7rem 1.1rem; background: #12355f; }
+.topbar a { color: #fff; text-decoration: none; }
+.homebtn { background: #fff; color: #12355f !important; font-weight: bold; padding: 0.35rem 0.8rem; border-radius: 999px; }
+.sitenav { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.95rem; }
+.sitenav a { text-decoration: underline; }
+.runbox { border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem; margin: 1rem 0; background: #fff; }
+.runbox textarea.code { width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.45; border: 1px solid #d7dee6; border-radius: 6px; padding: 0.55rem; background: #f7f9fb; color: #10233c; resize: vertical; }
+.runrow { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.55rem; }
+.runbtn { background: #12355f; color: #fff; border: 0; border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.98rem; cursor: pointer; }
+.runbtn:active { background: #0c2747; }
+.runhint { font-size: 0.85rem; color: #5a6a7a; }
+.runbox .out { margin: 0.6rem 0 0; background: #10233c; color: #d9f2d9; border-radius: 6px; padding: 0.55rem 0.7rem; white-space: pre-wrap; word-break: break-word; font-size: 0.92rem; }
+.runbox .out.err { background: #3c1414; color: #ffd9d9; }
+.expected { margin-top: 0.6rem; }
+.expected-label { margin: 0 0 0.25rem; font-size: 0.85rem; color: #5a6a7a; }
+.expected pre { margin: 0; background: #f1f4ec; border: 1px dashed #b9c4a8; border-radius: 6px; padding: 0.5rem 0.7rem; white-space: pre-wrap; font-size: 0.92rem; }
+pre.codeblock { background: #10233c; color: #e8eef4; border-radius: 8px; padding: 0.7rem 0.8rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.45; }
+.note { font-size: 0.9rem; color: #5a6a7a; font-style: italic; }
+details.answer { margin: 0.6rem 0 1rem; }
+details.answer summary { cursor: pointer; color: #12355f; font-weight: bold; }
+.lessonlist { list-style: none; padding: 0; }
+.lessonlist li { margin: 0.55rem 0; }
+.lessonlist a { display: block; background: #fff; border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem 0.9rem; color: #12355f; text-decoration: none; font-weight: bold; }
+.lessonlist a span { display: block; font-weight: normal; color: #5a6a7a; font-size: 0.9rem; margin-top: 0.15rem; }
+.prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; }
+.prevnext a { color: #12355f; }
+footer { max-width: 44rem; margin: 0 auto; padding: 0 1.1rem 2rem; font-size: 0.88rem; color: #5a6a7a; }
+</style>
+</head>
+<body>
+<div class="topbar">
+<a class="homebtn" href="https://jesuslovestyler.com/">⌂ Home</a>
+<nav class="sitenav">
+<a href="index.html">Lessons</a>
+<a href="try.html">Try Nifla</a>
+</nav>
+</div>
+<main>
+<h1>Lesson 7 — When things go wrong</h1>
+<h3>Step 1: the two tenses of trouble</h3>
+<p>Things go wrong in two tenses. Some problems can be proven <em>before</em> the program runs — those are the checker's, and you met it in Lesson 5. The rest only arise along the way: a file that is not there, a division by a number that turned out to be zero. Those belong to <code>attempt</code>, which you borrowed in Lesson 6. Here is its full story.</p>
+<p><code>attempt</code> runs a stretch, and if a problem arises inside it, the <code>if it fails</code> stretch runs instead, with the problem's own words waiting in the name <code>problem</code>:</p>
+<div class="runbox">
+<textarea class="code" rows="7" spellcheck="false" aria-label="Nifla program">attempt {
+    let zero = length("")
+    say 10 / zero
+} if it fails {
+    say "That sum went wrong: " + problem
+}
+say "The program carries on."</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>That sum went wrong: I can't divide by zero. Dividing needs a second number that isn't zero.
+The program carries on.</pre></div>
+</div>
+<p>Notice the zero here was <em>worked out while the program ran</em> — <code>length("")</code> is 0, but nothing in the program says so in so many words, so the checker cannot prove it ahead of time. The problem arose honestly, along the way, and <code>attempt</code> caught it, and the program carried on.</p>
+<p><strong>Your turn.</strong> Try dividing 7 by a worked-out zero of your own — <code>length("ab") - 2</code> is one — and in the failure stretch, say "Caught it." Then say "Still standing." after the whole attempt.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="7" spellcheck="false" aria-label="Nifla program">attempt {
+    let zero = length("ab") - 2
+    say 7 / zero
+} if it fails {
+    say "Caught it."
+}
+say "Still standing."</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Caught it.
+Still standing.</pre></div>
+</div></details>
+<h3>Step 2: the other tense</h3>
+<p>A zero written plainly — <code>10 / 0</code> — is the other tense: the checker proves it before the program starts and refuses the whole program, and <code>attempt</code> never gets the chance. The two of them work together: the checker catches what can be proven ahead of time, and <code>attempt</code> catches the rest, as it happens. Neither is a punishment. Both are the language refusing to let a program lie about what it is doing.</p>
+<h3>Step 3: the program's second voice</h3>
+<p>A program also has two voices. <code>say</code> speaks to the ordinary output; its sterner sibling <code>sayerr</code> speaks to the <em>error stream</em>, where warnings belong, so the ordinary output stays clean:</p>
+<div class="runbox">
+<textarea class="code" rows="2" spellcheck="false" aria-label="Nifla program">sayerr("Mind the step.")
+say "All is well."</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>All is well.</pre></div>
+</div>
+<p>The first line was spoken too — it simply went to the other stream, which this book's examples do not show. When you run that program yourself, your terminal will show both lines; they arrived by different roads.</p>
+<p><strong>Your turn.</strong> Send the warning "Low bridge." to the error stream, and say "Through." to the ordinary one.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="2" spellcheck="false" aria-label="Nifla program">sayerr("Low bridge.")
+say "Through."</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Through.</pre></div>
+</div></details>
+<h3>Step 4: reading a refusal</h3>
+<p>Most errors you will ever meet are neither deep nor dramatic. They are small, and the language's plain words make them easy to find. This program is shown, not run — read its refusal:</p>
+<pre class="codeblock">let mesage = "Shalom"
+say message</pre>
+<pre class="codeblock">Line 2: I don't know a variable called 'message' yet.
+You can make one with: let message = ...
+Did you mean 'mesage'?</pre>
+<p>One letter out of place, and the language not only found it but guessed what you meant. That is the spirit of every refusal in this language: name the line, say the problem plainly, point at the fix. When you meet one — and you will, everyone does — read it slowly. It is almost always telling you the truth.</p>
+<h3>The ledger grows: a book that survives a missing file</h3>
+<p>The ledger puts the two tenses to work. Reading its papers is wrapped in <code>attempt</code>, so the very first run — no file yet — is a beginning, not a crash:</p>
+<div class="runbox">
+<textarea class="code" rows="10" spellcheck="false" aria-label="Nifla program">let lines = []
+attempt {
+    let saved = readfile("ledger.txt")
+    if saved != "" {
+        lines = split(saved, "\n")
+    }
+} if it fails {
+    say "A brand-new ledger."
+}
+say "Lines in the book: " + length(lines)</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>A brand-new ledger.
+Lines in the book: 0</pre></div>
+</div>
+<p>The book now survives its own absence. In Lesson 11 this little pattern grows into the full loading of the ledger — gifts, numbers and all.</p>
+<h3>Your turn</h3>
+<p>The program below is broken in two places: one name is misspelled, and one sum can never be run. It is shown, not run:</p>
+<pre class="codeblock">let mesage = "Shalom"
+say message
+say 10 / 0</pre>
+<p>Fix both faults and make the program run clean.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="3" spellcheck="false" aria-label="Nifla program">let message = "Shalom"
+say message
+say 10 / 2</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Shalom
+5</pre></div>
+</div></details>
+<h3>You can now…</h3>
+<ul><li>catch a problem that arises along the way with</li></ul>
+<p>  <code>attempt … if it fails</code>, and hear its own words in   <code>problem</code>;</p>
+<ul><li>tell the two tenses apart: proven ahead of time by</li></ul>
+<p>  the checker, or caught as it happens by <code>attempt</code>;</p>
+<ul><li>speak to the error stream with <code>sayerr</code>, keeping the</li></ul>
+<p>  ordinary output clean;</p>
+<ul><li>read a refusal slowly and trust it: the line, the</li></ul>
+<p>  problem, the fix.</p>
+<p>---</p>
+<div class="prevnext"><a href="lesson-6.html">← Lesson 6: Papers that stay</a><a href="lesson-8.html">Lesson 8: Standing on its own →</a></div>
+</main>
+<footer>
+<p>Nifla is a public-domain programming language by Tyler Kovalevich — programmed like JavaScript, runs like Swift, all the way down to an operating system. The language, this site, and everything on it are given away freely.</p>
+</footer>
+<script src="nifla.js"></script>
+<script src="site.js"></script>
+<script data-goatcounter="https://jesuslovestyler.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

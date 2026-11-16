@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 6 — Papers that stay — Learn Nifla</title>
+<meta name="description" content="Lesson 6 of the Nifla tutorial: Papers that stay. Read it, run every example on the page, then take your turn.">
+<meta property="og:title" content="Lesson 6 — Papers that stay — Learn Nifla">
+<meta property="og:description" content="Lesson 6 of the Nifla tutorial: Papers that stay. Read it, run every example on the page, then take your turn.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lesson 6 — Papers that stay — Learn Nifla">
+<meta name="twitter:description" content="Lesson 6 of the Nifla tutorial: Papers that stay. Read it, run every example on the page, then take your turn.">
+<meta name="twitter:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #fdfbf7; color: #1d2733; line-height: 1.55; }
+main { max-width: 44rem; margin: 0 auto; padding: 1rem 1.1rem 3rem; }
+h1 { font-size: 1.7rem; line-height: 1.25; }
+h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+h3 { font-size: 1.12rem; margin-top: 1.8rem; }
+p { margin: 0.7rem 0; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92em; background: #eef1f4; padding: 0.05em 0.3em; border-radius: 4px; }
+.topbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between; padding: 0.7rem 1.1rem; background: #12355f; }
+.topbar a { color: #fff; text-decoration: none; }
+.homebtn { background: #fff; color: #12355f !important; font-weight: bold; padding: 0.35rem 0.8rem; border-radius: 999px; }
+.sitenav { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.95rem; }
+.sitenav a { text-decoration: underline; }
+.runbox { border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem; margin: 1rem 0; background: #fff; }
+.runbox textarea.code { width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.45; border: 1px solid #d7dee6; border-radius: 6px; padding: 0.55rem; background: #f7f9fb; color: #10233c; resize: vertical; }
+.runrow { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.55rem; }
+.runbtn { background: #12355f; color: #fff; border: 0; border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.98rem; cursor: pointer; }
+.runbtn:active { background: #0c2747; }
+.runhint { font-size: 0.85rem; color: #5a6a7a; }
+.runbox .out { margin: 0.6rem 0 0; background: #10233c; color: #d9f2d9; border-radius: 6px; padding: 0.55rem 0.7rem; white-space: pre-wrap; word-break: break-word; font-size: 0.92rem; }
+.runbox .out.err { background: #3c1414; color: #ffd9d9; }
+.expected { margin-top: 0.6rem; }
+.expected-label { margin: 0 0 0.25rem; font-size: 0.85rem; color: #5a6a7a; }
+.expected pre { margin: 0; background: #f1f4ec; border: 1px dashed #b9c4a8; border-radius: 6px; padding: 0.5rem 0.7rem; white-space: pre-wrap; font-size: 0.92rem; }
+pre.codeblock { background: #10233c; color: #e8eef4; border-radius: 8px; padding: 0.7rem 0.8rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.45; }
+.note { font-size: 0.9rem; color: #5a6a7a; font-style: italic; }
+details.answer { margin: 0.6rem 0 1rem; }
+details.answer summary { cursor: pointer; color: #12355f; font-weight: bold; }
+.lessonlist { list-style: none; padding: 0; }
+.lessonlist li { margin: 0.55rem 0; }
+.lessonlist a { display: block; background: #fff; border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem 0.9rem; color: #12355f; text-decoration: none; font-weight: bold; }
+.lessonlist a span { display: block; font-weight: normal; color: #5a6a7a; font-size: 0.9rem; margin-top: 0.15rem; }
+.prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; }
+.prevnext a { color: #12355f; }
+footer { max-width: 44rem; margin: 0 auto; padding: 0 1.1rem 2rem; font-size: 0.88rem; color: #5a6a7a; }
+</style>
+</head>
+<body>
+<div class="topbar">
+<a class="homebtn" href="https://jesuslovestyler.com/">⌂ Home</a>
+<nav class="sitenav">
+<a href="index.html">Lessons</a>
+<a href="try.html">Try Nifla</a>
+</nav>
+</div>
+<main>
+<h1>Lesson 6 — Papers that stay</h1>
+<p class="note">One honest difference on this page: each Run starts with fresh, empty papers, so an example that reads a paper writes it first, inside the same program — in a program on your own machine, the papers stay between runs, just as the lesson says.</p>
+<h3>Step 1: writing and reading a file</h3>
+<p>Everything so far has lived and died inside one run of a program; when the program ends, its shelves are swept clean. But a program can also keep <em>papers</em>: files on the disk, which stay after the program ends. <code>writefile(path, text)</code> writes text to a file, replacing what was there. <code>readfile(path)</code> gives back a file's whole text:</p>
+<div class="runbox">
+<textarea class="code" rows="4" spellcheck="false" aria-label="Nifla program">writefile("note.txt", "Shalom, garden")
+let back = readfile("note.txt")
+say back
+say length(back)</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Shalom, garden
+14</pre></div>
+</div>
+<p><strong>Your turn.</strong> Write the text "Remember the milk" to a file called <code>reminder.txt</code>, read it back onto a shelf, and say the shelf.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="3" spellcheck="false" aria-label="Nifla program">writefile("reminder.txt", "Remember the milk")
+let back = readfile("reminder.txt")
+say back</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Remember the milk</pre></div>
+</div></details>
+<h3>Step 2: reading a file as bytes</h3>
+<p>There is a second reader, for files whose contents are not text at all. <code>readbytes(path)</code> reads a file as the bytes it is, into a block of <em>bytes</em> — the language's way of holding raw data, where each byte is a whole number from 0 to 255, reached by number like a list item:</p>
+<div class="runbox">
+<textarea class="code" rows="4" spellcheck="false" aria-label="Nifla program">writefile("note.txt", "Shalom")
+let block = readbytes("note.txt")
+say length(block)
+say block[0]</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>6
+83</pre></div>
+</div>
+<p>The 83 is the byte that writes the letter "S". Hold that thought loosely — bytes matter most downstairs, in Lesson 10, and on feathers, in Lesson 9. Here, what matters is the shape of the idea: text is for reading, bytes are for exactness.</p>
+<p><strong>Your turn.</strong> Write "Hi" to a file, read it back as bytes, and say how many bytes there are and what the second byte is. (The byte for "i" is 105.)</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="4" spellcheck="false" aria-label="Nifla program">writefile("hi.txt", "Hi")
+let block = readbytes("hi.txt")
+say length(block)
+say block[1]</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>2
+105</pre></div>
+</div></details>
+<h3>Step 3: a program that remembers</h3>
+<p>Now the real lesson: a program that remembers between runs. A guest book, which anyone running the program signs:</p>
+<div class="runbox">
+<textarea class="code" rows="13" spellcheck="false" aria-label="Nifla program">let names = []
+attempt {
+    let saved = readfile("guestbook.txt")
+    if saved != "" {
+        names = split(saved, "\n")
+    }
+} if it fails {
+    say "A brand-new guest book."
+}
+append(names, arguments()[0])
+writefile("guestbook.txt", join(names, "\n"))
+say "The guest book holds " + length(names) + " name(s)."
+say join(names, ", ")</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>A brand-new guest book.
+The guest book holds 1 name(s).
+Ada</pre></div>
+</div>
+<p>Walk it through. The program starts with an empty list, then <em>tries</em> to read the guest book from last time. That trying is <code>attempt</code>: it runs a stretch, and if a problem arises inside it — and a file that is not there is a problem — the <code>if it fails</code> stretch runs instead. On the very first run there is no book, so the program says so and carries on with the empty list. Then it signs the book with the first word it was run with (<code>arguments()</code> — Lesson 8 gives it its full story), writes the whole book back as one name per line, and reports.</p>
+<p>Run it twice on your own machine: the second run finds the book, and Ada is joined by whoever signs next. The program has a memory now — not in itself, but in its papers. (This book's proof runs each example in a fresh folder, so in these pages the book is always new; the remembering happens on <em>your</em> machine, and watching it happen is the lesson.)</p>
+<p><strong>Your turn.</strong> Change one thing in your own copy: make the guest book's file called <code>visitors.txt</code> instead, and the fresh-start message say "A brand-new visitors book." Run it and check the first line.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="13" spellcheck="false" aria-label="Nifla program">let names = []
+attempt {
+    let saved = readfile("visitors.txt")
+    if saved != "" {
+        names = split(saved, "\n")
+    }
+} if it fails {
+    say "A brand-new visitors book."
+}
+append(names, arguments()[0])
+writefile("visitors.txt", join(names, "\n"))
+say "The visitors book holds " + length(names) + " name(s)."
+say join(names, ", ")</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>A brand-new visitors book.
+The visitors book holds 1 name(s).
+Ada</pre></div>
+</div></details>
+<p><code>attempt</code> gets a fuller telling in the next lesson — it is the language's answer to everything that can go wrong along the way. Here it did its quietest work: turning "there is nothing here yet" from a crash into a beginning.</p>
+<h3>The ledger grows: the book is written down</h3>
+<p>The ledger learns to keep its papers. For now the book is saved as one line per gift — who, a bar, the cents — and read back whole:</p>
+<div class="runbox">
+<textarea class="code" rows="11" spellcheck="false" aria-label="Nifla program">let gifts = []
+append(gifts, { who: "Feeding America", cents: 620 })
+append(gifts, { who: "Barry Cunningham", cents: 500 })
+let lines = []
+for gift in gifts {
+    append(lines, gift.who + "|" + gift.cents)
+}
+writefile("ledger.txt", join(lines, "\n"))
+let back = readfile("ledger.txt")
+say back
+say "Lines in the book: " + length(split(back, "\n"))</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Feeding America|620
+Barry Cunningham|500
+Lines in the book: 2</pre></div>
+</div>
+<p>Honesty requires a note: what came back is <em>text</em>. The names read fine, but the cents came back as the characters "620", not the number 620 — papers hold text, and text is all a file can promise. Teaching the program to read its own numbers back is the capstone's last trick, in Lesson 11. Until then, the book is written down, and that is already something: it survives the program that wrote it.</p>
+<h3>Your turn</h3>
+<p>Make a verse keeper. Write this line to a file called <code>verse.txt</code> — "Your word is a lamp to my feet, and a light for my path." — then read the file back and say what it holds.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="3" spellcheck="false" aria-label="Nifla program">writefile("verse.txt", "Your word is a lamp to my feet, and a light for my path.")
+let verse = readfile("verse.txt")
+say verse</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Your word is a lamp to my feet, and a light for my path.</pre></div>
+</div></details>
+<h3>You can now…</h3>
+<ul><li>write text to a file with <code>writefile</code> and read a</li></ul>
+<p>  file's whole text back with <code>readfile</code>;</p>
+<ul><li>read a file as exact bytes with <code>readbytes</code>;</li><li>try something that might not be there with</li></ul>
+<p>  <code>attempt … if it fails</code>, and carry on kindly when   it isn't;</p>
+<ul><li>build a program that remembers between runs, in its</li></ul>
+<p>  papers.</p>
+<p>---</p>
+<div class="prevnext"><a href="lesson-5.html">← Lesson 5: Kinds and nothing</a><a href="lesson-7.html">Lesson 7: When things go wrong →</a></div>
+</main>
+<footer>
+<p>Nifla is a public-domain programming language by Tyler Kovalevich — programmed like JavaScript, runs like Swift, all the way down to an operating system. The language, this site, and everything on it are given away freely.</p>
+</footer>
+<script src="nifla.js"></script>
+<script src="site.js"></script>
+<script data-goatcounter="https://jesuslovestyler.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

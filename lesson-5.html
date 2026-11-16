@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 5 — Kinds and nothing — Learn Nifla</title>
+<meta name="description" content="Lesson 5 of the Nifla tutorial: Kinds and nothing. Read it, run every example on the page, then take your turn.">
+<meta property="og:title" content="Lesson 5 — Kinds and nothing — Learn Nifla">
+<meta property="og:description" content="Lesson 5 of the Nifla tutorial: Kinds and nothing. Read it, run every example on the page, then take your turn.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lesson 5 — Kinds and nothing — Learn Nifla">
+<meta name="twitter:description" content="Lesson 5 of the Nifla tutorial: Kinds and nothing. Read it, run every example on the page, then take your turn.">
+<meta name="twitter:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #fdfbf7; color: #1d2733; line-height: 1.55; }
+main { max-width: 44rem; margin: 0 auto; padding: 1rem 1.1rem 3rem; }
+h1 { font-size: 1.7rem; line-height: 1.25; }
+h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+h3 { font-size: 1.12rem; margin-top: 1.8rem; }
+p { margin: 0.7rem 0; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92em; background: #eef1f4; padding: 0.05em 0.3em; border-radius: 4px; }
+.topbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between; padding: 0.7rem 1.1rem; background: #12355f; }
+.topbar a { color: #fff; text-decoration: none; }
+.homebtn { background: #fff; color: #12355f !important; font-weight: bold; padding: 0.35rem 0.8rem; border-radius: 999px; }
+.sitenav { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.95rem; }
+.sitenav a { text-decoration: underline; }
+.runbox { border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem; margin: 1rem 0; background: #fff; }
+.runbox textarea.code { width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.45; border: 1px solid #d7dee6; border-radius: 6px; padding: 0.55rem; background: #f7f9fb; color: #10233c; resize: vertical; }
+.runrow { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.55rem; }
+.runbtn { background: #12355f; color: #fff; border: 0; border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.98rem; cursor: pointer; }
+.runbtn:active { background: #0c2747; }
+.runhint { font-size: 0.85rem; color: #5a6a7a; }
+.runbox .out { margin: 0.6rem 0 0; background: #10233c; color: #d9f2d9; border-radius: 6px; padding: 0.55rem 0.7rem; white-space: pre-wrap; word-break: break-word; font-size: 0.92rem; }
+.runbox .out.err { background: #3c1414; color: #ffd9d9; }
+.expected { margin-top: 0.6rem; }
+.expected-label { margin: 0 0 0.25rem; font-size: 0.85rem; color: #5a6a7a; }
+.expected pre { margin: 0; background: #f1f4ec; border: 1px dashed #b9c4a8; border-radius: 6px; padding: 0.5rem 0.7rem; white-space: pre-wrap; font-size: 0.92rem; }
+pre.codeblock { background: #10233c; color: #e8eef4; border-radius: 8px; padding: 0.7rem 0.8rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.45; }
+.note { font-size: 0.9rem; color: #5a6a7a; font-style: italic; }
+details.answer { margin: 0.6rem 0 1rem; }
+details.answer summary { cursor: pointer; color: #12355f; font-weight: bold; }
+.lessonlist { list-style: none; padding: 0; }
+.lessonlist li { margin: 0.55rem 0; }
+.lessonlist a { display: block; background: #fff; border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem 0.9rem; color: #12355f; text-decoration: none; font-weight: bold; }
+.lessonlist a span { display: block; font-weight: normal; color: #5a6a7a; font-size: 0.9rem; margin-top: 0.15rem; }
+.prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; }
+.prevnext a { color: #12355f; }
+footer { max-width: 44rem; margin: 0 auto; padding: 0 1.1rem 2rem; font-size: 0.88rem; color: #5a6a7a; }
+</style>
+</head>
+<body>
+<div class="topbar">
+<a class="homebtn" href="https://jesuslovestyler.com/">⌂ Home</a>
+<nav class="sitenav">
+<a href="index.html">Lessons</a>
+<a href="try.html">Try Nifla</a>
+</nav>
+</div>
+<main>
+<h1>Lesson 5 — Kinds and nothing</h1>
+<h3>Step 1: saying the kind out loud</h3>
+<p>Every value is of one <em>kind</em>: <code>number</code>, <code>text</code>, <code>boolean</code>, <code>list</code>, <code>object</code>, or <code>bytes</code> — and there is one more, <code>nothing</code>, which gets Step 2. A kind can be <em>written</em>, as a mark: a kind word after a colon, on a <code>let</code>, on a function's parameters, or after <code>-&gt;</code> on a function to say what it gives. A mark is a promise the language checks — at every boundary the value must be of the marked kind, or the program is refused in plain words:</p>
+<div class="runbox">
+<textarea class="code" rows="7" spellcheck="false" aria-label="Nifla program">let years: number = 29
+make double(n: number) -&gt; number {
+    give n * 2
+}
+say double(years)
+let word: text = "Shalom"
+say word</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>58
+Shalom</pre></div>
+</div>
+<p>Marks are optional everywhere; an unmarked program is checked just as hard in every way that doesn't need a mark. A mark adds the kind promise on top.</p>
+<p><strong>Your turn.</strong> Keep a <code>text</code> mark on a shelf holding your name, and mark a function <code>triple</code> so it promises a number in and a number out. Say <code>triple(4)</code>.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="6" spellcheck="false" aria-label="Nifla program">let name: text = "Tyler"
+make triple(n: number) -&gt; number {
+    give n * 3
+}
+say name
+say triple(4)</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Tyler
+12</pre></div>
+</div></details>
+<h3>Step 2: nothing, and maybe</h3>
+<p><code>nothing</code> is a value: the value that says <em>there is nothing here</em>. It can be kept, handed around, and compared, and it speaks as <code>nothing</code>. Why would a program hold nothing on purpose? Because the honest answer to some questions is "it isn't there" — a lookup that might not find.</p>
+<p>A <code>maybe</code> mark promises a value of one kind <em>or</em> <code>nothing</code>: <code>maybe number</code> is a number or nothing. Here is a lookup with an honest empty answer:</p>
+<div class="runbox">
+<textarea class="code" rows="7" spellcheck="false" aria-label="Nifla program">make lookup(name) -&gt; maybe number {
+    if name == "Tyler" {
+        give 29
+    }
+}
+say lookup("Tyler")
+say lookup("Noki")</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>29
+nothing</pre></div>
+</div>
+<p>Look at how the nothing arrived: on the road where the name is not "Tyler", <code>lookup</code> reaches its end without <code>give</code> — so it hands back <code>nothing</code>. (Lesson 4's pocket, opened: a function that gives nothing back gives <em>nothing</em> back. The <code>-&gt; maybe</code> mark makes that a promise instead of an accident.)</p>
+<p><strong>Your turn.</strong> Write <code>ageOf</code> the same way: it knows one person — "Ada" is 36 — and says nothing for anyone else. Say <code>ageOf("Ada")</code> and <code>ageOf("Caleb")</code>.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="7" spellcheck="false" aria-label="Nifla program">make ageOf(name) -&gt; maybe number {
+    if name == "Ada" {
+        give 36
+    }
+}
+say ageOf("Ada")
+say ageOf("Caleb")</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>36
+nothing</pre></div>
+</div></details>
+<h3>Step 3: handling both roads</h3>
+<p>A maybe value may not simply be <em>used</em> as if it were surely there — that is the whole point of marking it. The way to handle it is to ask, with <code>== nothing</code>, and the checker follows the asking: on the road where the answer was <em>yes</em>, the value is known to be nothing; on the other road, it is known to be there, of its kind, and may be used freely. The asking <em>is</em> the unwrapping — there is no other word to memorize:</p>
+<div class="runbox">
+<textarea class="code" rows="17" spellcheck="false" aria-label="Nifla program">make lookup(name) -&gt; maybe number {
+    if name == "Tyler" {
+        give 29
+    }
+}
+let a = lookup("Tyler")
+if a == nothing {
+    say "No age on file."
+} else {
+    say "Next year: " + (a + 1)
+}
+let b = lookup("Noki")
+if b != nothing {
+    say "Next year: " + (b + 1)
+} else {
+    say "No age on file."
+}</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Next year: 30
+No age on file.</pre></div>
+</div>
+<p><strong>Your turn.</strong> Using your <code>ageOf</code> from Step 2, look up "Caleb" and handle both roads: if it is nothing, say "Unknown."; otherwise say the age doubled.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="11" spellcheck="false" aria-label="Nifla program">make ageOf(name) -&gt; maybe number {
+    if name == "Ada" {
+        give 36
+    }
+}
+let age = ageOf("Caleb")
+if age == nothing {
+    say "Unknown."
+} else {
+    say age * 2
+}</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Unknown.</pre></div>
+</div></details>
+<h3>Step 4: meet the checker</h3>
+<p>Now watch the checker work. This program is <em>shown, not run</em>, because the checker refuses it before anything runs:</p>
+<pre class="codeblock">make lookup(name) -&gt; maybe number {
+    if name == "Tyler" {
+        give 29
+    }
+}
+let b = lookup("Noki")
+say b + 1</pre>
+<pre class="codeblock">Line 7: This uses a number or nothing — a value that
+may be nothing — where a value that is surely there is
+needed, and nothing is the empty value: there is
+nothing there to use. Check the value first, like:
+if value == nothing { ... } else { ... } — in the
+'else', the value is known to be there. I caught this
+before the program ran, so nothing ran.</pre>
+<p>Those are the checker's own words, from a real refusal. Read what it did for you: it read the whole program <em>before</em> running it, found the one line where a maybe value was used as if it were surely there, stopped everything, named the line, explained the problem in plain words, and showed the shape of the fix. That is safety you can feel — not a fence you crash into, but a friend at the door who reads your work and says "this one line, here; walk both roads." The guards stand behind the checker, too: a maybe that somehow slips past every proof and is used while it is nothing is refused at the moment of use, in the same plain words.</p>
+<p>This is the Swift half of the promise, arriving early: strength that checks your work <em>before</em> it runs, the way a compiled language's does — while you are still writing as freely as JavaScript. You do not have to choose between the two halves. In Nifla they arrive together.</p>
+<h3>The ledger grows: finding a gift</h3>
+<p>The book learns to answer "what did we give to…?" — honestly, including when the answer is <em>nothing is in the book</em>:</p>
+<div class="runbox">
+<textarea class="code" rows="20" spellcheck="false" aria-label="Nifla program">make findgift(gifts, who) -&gt; maybe object {
+    for gift in gifts {
+        if gift.who == who {
+            give gift
+        }
+    }
+}
+let gifts = []
+append(gifts, { who: "Feeding America", cents: 620 })
+append(gifts, { who: "Barry Cunningham", cents: 500 })
+let found = findgift(gifts, "Barry Cunningham")
+if found == nothing {
+    say "No gift to Barry Cunningham is in the book."
+} else {
+    say "Barry Cunningham: " + found.cents + " cents"
+}
+let missing = findgift(gifts, "Noki")
+if missing == nothing {
+    say "No gift to Noki is in the book."
+}</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Barry Cunningham: 500 cents
+No gift to Noki is in the book.</pre></div>
+</div>
+<p>The mark says <code>-&gt; maybe object</code> — a gift card, or nothing. Both lookups walk both roads, and the book never pretends.</p>
+<h3>Your turn</h3>
+<p>Write a phone book as a function <code>numberFor</code> that is handed a name and gives back <code>maybe text</code>: "Mom" gives "555-0100" and "Billy" gives "555-0125". Look up Billy and look up Quinton, handling both roads for each.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="20" spellcheck="false" aria-label="Nifla program">make numberFor(name) -&gt; maybe text {
+    if name == "Mom" {
+        give "555-0100"
+    }
+    if name == "Billy" {
+        give "555-0125"
+    }
+}
+let found = numberFor("Billy")
+if found == nothing {
+    say "No number for Billy."
+} else {
+    say "Billy: " + found
+}
+let missing = numberFor("Quinton")
+if missing == nothing {
+    say "No number for Quinton."
+} else {
+    say "Quinton: " + missing
+}</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Billy: 555-0125
+No number for Quinton.</pre></div>
+</div></details>
+<h3>You can now…</h3>
+<ul><li>write kind marks on shelves, parameters, and</li></ul>
+<p>  function promises, and have the language check them;</p>
+<ul><li>say <code>nothing</code> — the honest empty value — and promise</li></ul>
+<p>  "this kind, or nothing" with <code>maybe</code>;</p>
+<ul><li>handle both roads by asking <code>== nothing</code>, the asking</li></ul>
+<p>  being the unwrapping;</p>
+<ul><li>read a checker refusal and know what it is telling</li></ul>
+<p>  you: the line, the problem, the shape of the fix.</p>
+<p>---</p>
+<div class="prevnext"><a href="lesson-4.html">← Lesson 4: Making your own tools</a><a href="lesson-6.html">Lesson 6: Papers that stay →</a></div>
+</main>
+<footer>
+<p>Nifla is a public-domain programming language by Tyler Kovalevich — programmed like JavaScript, runs like Swift, all the way down to an operating system. The language, this site, and everything on it are given away freely.</p>
+</footer>
+<script src="nifla.js"></script>
+<script src="site.js"></script>
+<script data-goatcounter="https://jesuslovestyler.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

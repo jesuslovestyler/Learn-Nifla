@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Try Nifla — write and run Nifla in your browser</title>
+<meta name="description" content="A free playground for the Nifla programming language: write a program, run it in the browser, and hear the checker answer in plain words.">
+<meta property="og:title" content="Try Nifla — write and run Nifla in your browser">
+<meta property="og:description" content="A free playground for the Nifla programming language: write a program, run it in the browser, and hear the checker answer in plain words.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Try Nifla — write and run Nifla in your browser">
+<meta name="twitter:description" content="A free playground for the Nifla programming language: write a program, run it in the browser, and hear the checker answer in plain words.">
+<meta name="twitter:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #fdfbf7; color: #1d2733; line-height: 1.55; }
+main { max-width: 44rem; margin: 0 auto; padding: 1rem 1.1rem 3rem; }
+h1 { font-size: 1.7rem; line-height: 1.25; }
+h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+h3 { font-size: 1.12rem; margin-top: 1.8rem; }
+p { margin: 0.7rem 0; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92em; background: #eef1f4; padding: 0.05em 0.3em; border-radius: 4px; }
+.topbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between; padding: 0.7rem 1.1rem; background: #12355f; }
+.topbar a { color: #fff; text-decoration: none; }
+.homebtn { background: #fff; color: #12355f !important; font-weight: bold; padding: 0.35rem 0.8rem; border-radius: 999px; }
+.sitenav { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.95rem; }
+.sitenav a { text-decoration: underline; }
+.runbox { border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem; margin: 1rem 0; background: #fff; }
+.runbox textarea.code { width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.45; border: 1px solid #d7dee6; border-radius: 6px; padding: 0.55rem; background: #f7f9fb; color: #10233c; resize: vertical; }
+.runrow { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.55rem; }
+.runbtn { background: #12355f; color: #fff; border: 0; border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.98rem; cursor: pointer; }
+.runbtn:active { background: #0c2747; }
+.runhint { font-size: 0.85rem; color: #5a6a7a; }
+.runbox .out { margin: 0.6rem 0 0; background: #10233c; color: #d9f2d9; border-radius: 6px; padding: 0.55rem 0.7rem; white-space: pre-wrap; word-break: break-word; font-size: 0.92rem; }
+.runbox .out.err { background: #3c1414; color: #ffd9d9; }
+.expected { margin-top: 0.6rem; }
+.expected-label { margin: 0 0 0.25rem; font-size: 0.85rem; color: #5a6a7a; }
+.expected pre { margin: 0; background: #f1f4ec; border: 1px dashed #b9c4a8; border-radius: 6px; padding: 0.5rem 0.7rem; white-space: pre-wrap; font-size: 0.92rem; }
+pre.codeblock { background: #10233c; color: #e8eef4; border-radius: 8px; padding: 0.7rem 0.8rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.45; }
+.note { font-size: 0.9rem; color: #5a6a7a; font-style: italic; }
+details.answer { margin: 0.6rem 0 1rem; }
+details.answer summary { cursor: pointer; color: #12355f; font-weight: bold; }
+.lessonlist { list-style: none; padding: 0; }
+.lessonlist li { margin: 0.55rem 0; }
+.lessonlist a { display: block; background: #fff; border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem 0.9rem; color: #12355f; text-decoration: none; font-weight: bold; }
+.lessonlist a span { display: block; font-weight: normal; color: #5a6a7a; font-size: 0.9rem; margin-top: 0.15rem; }
+.prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; }
+.prevnext a { color: #12355f; }
+footer { max-width: 44rem; margin: 0 auto; padding: 0 1.1rem 2rem; font-size: 0.88rem; color: #5a6a7a; }
+</style>
+</head>
+<body>
+<div class="topbar">
+<a class="homebtn" href="https://jesuslovestyler.com/">⌂ Home</a>
+<nav class="sitenav">
+<a href="index.html">Lessons</a>
+<a href="try.html">Try Nifla</a>
+</nav>
+</div>
+<main>
+<h1>Try Nifla</h1>
+<p>Write any Nifla program and run it right here. The checker reads it first — if something is provably wrong, it refuses in plain words before anything runs, and tells you how to fix it.</p>
+<p>The program's arguments are the words <strong>Ada</strong> and <strong>Byron</strong>, the same words the lessons use. Each run starts with fresh, empty papers.</p>
+<div class="runbox">
+<textarea id="try-code" class="code" rows="14" spellcheck="false" aria-label="Your Nifla program">say "Hello, world"
+
+let name = "friend"
+say "Shalom, " + name</textarea>
+<div class="runrow"><button id="try-run" class="runbtn" type="button">Run it</button><span class="runhint">The whole hosted language — and the floor desk, for <code>floor</code> blocks.</span></div>
+<pre id="try-out" class="out" hidden></pre>
+</div>
+<h2>A few starts</h2>
+<ul>
+<li><strong>The giving ledger</strong> — the lessons' own thread: keep gifts in exact cents, add them up, say the total.</li>
+<li><strong>A look downstairs</strong> — a <code>floor</code> block adding two numbers on the desk, from Lesson 10.</li>
+</ul>
+<p>New here? <a href="index.html">Start with the lessons</a> — they teach programming itself, one small win at a time.</p>
+</main>
+<footer>
+<p>Nifla is a public-domain programming language by Tyler Kovalevich — programmed like JavaScript, runs like Swift, all the way down to an operating system. The language, this site, and everything on it are given away freely.</p>
+</footer>
+<script src="nifla.js"></script>
+<script src="site.js"></script>
+<script data-goatcounter="https://jesuslovestyler.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 10 — A first look downstairs — Learn Nifla</title>
+<meta name="description" content="Lesson 10 of the Nifla tutorial: A first look downstairs. Read it, run every example on the page, then take your turn.">
+<meta property="og:title" content="Lesson 10 — A first look downstairs — Learn Nifla">
+<meta property="og:description" content="Lesson 10 of the Nifla tutorial: A first look downstairs. Read it, run every example on the page, then take your turn.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lesson 10 — A first look downstairs — Learn Nifla">
+<meta name="twitter:description" content="Lesson 10 of the Nifla tutorial: A first look downstairs. Read it, run every example on the page, then take your turn.">
+<meta name="twitter:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #fdfbf7; color: #1d2733; line-height: 1.55; }
+main { max-width: 44rem; margin: 0 auto; padding: 1rem 1.1rem 3rem; }
+h1 { font-size: 1.7rem; line-height: 1.25; }
+h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+h3 { font-size: 1.12rem; margin-top: 1.8rem; }
+p { margin: 0.7rem 0; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92em; background: #eef1f4; padding: 0.05em 0.3em; border-radius: 4px; }
+.topbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between; padding: 0.7rem 1.1rem; background: #12355f; }
+.topbar a { color: #fff; text-decoration: none; }
+.homebtn { background: #fff; color: #12355f !important; font-weight: bold; padding: 0.35rem 0.8rem; border-radius: 999px; }
+.sitenav { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.95rem; }
+.sitenav a { text-decoration: underline; }
+.runbox { border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem; margin: 1rem 0; background: #fff; }
+.runbox textarea.code { width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.45; border: 1px solid #d7dee6; border-radius: 6px; padding: 0.55rem; background: #f7f9fb; color: #10233c; resize: vertical; }
+.runrow { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.55rem; }
+.runbtn { background: #12355f; color: #fff; border: 0; border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.98rem; cursor: pointer; }
+.runbtn:active { background: #0c2747; }
+.runhint { font-size: 0.85rem; color: #5a6a7a; }
+.runbox .out { margin: 0.6rem 0 0; background: #10233c; color: #d9f2d9; border-radius: 6px; padding: 0.55rem 0.7rem; white-space: pre-wrap; word-break: break-word; font-size: 0.92rem; }
+.runbox .out.err { background: #3c1414; color: #ffd9d9; }
+.expected { margin-top: 0.6rem; }
+.expected-label { margin: 0 0 0.25rem; font-size: 0.85rem; color: #5a6a7a; }
+.expected pre { margin: 0; background: #f1f4ec; border: 1px dashed #b9c4a8; border-radius: 6px; padding: 0.5rem 0.7rem; white-space: pre-wrap; font-size: 0.92rem; }
+pre.codeblock { background: #10233c; color: #e8eef4; border-radius: 8px; padding: 0.7rem 0.8rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.45; }
+.note { font-size: 0.9rem; color: #5a6a7a; font-style: italic; }
+details.answer { margin: 0.6rem 0 1rem; }
+details.answer summary { cursor: pointer; color: #12355f; font-weight: bold; }
+.lessonlist { list-style: none; padding: 0; }
+.lessonlist li { margin: 0.55rem 0; }
+.lessonlist a { display: block; background: #fff; border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem 0.9rem; color: #12355f; text-decoration: none; font-weight: bold; }
+.lessonlist a span { display: block; font-weight: normal; color: #5a6a7a; font-size: 0.9rem; margin-top: 0.15rem; }
+.prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; }
+.prevnext a { color: #12355f; }
+footer { max-width: 44rem; margin: 0 auto; padding: 0 1.1rem 2rem; font-size: 0.88rem; color: #5a6a7a; }
+</style>
+</head>
+<body>
+<div class="topbar">
+<a class="homebtn" href="https://jesuslovestyler.com/">⌂ Home</a>
+<nav class="sitenav">
+<a href="index.html">Lessons</a>
+<a href="try.html">Try Nifla</a>
+</nav>
+</div>
+<main>
+<h1>Lesson 10 — A first look downstairs</h1>
+<p class="note">On this page, floor blocks run on a simulated desk — the floor contract kept by a small simulation in the browser, carrying out the instructions the language's own books use. A block reaching past the desk is refused in plain words naming the limit. On real metal the same blocks run on the processor itself, exactly as the lesson teaches.</p>
+<h3>Step 1: why there is a downstairs</h3>
+<p>Everything you have written so far lives on the friendly side of the language: values are managed, every access is checked, loops and calls are guarded. That is deliberate — Nifla's stated bar is memory safety in the way Swift is memory-safe, and the friendly side keeps it.</p>
+<p>But some programs must touch the machine itself: an operating system has no operating system beneath it. For them, the language keeps a <em>floor</em> — a deliberate, marked door out of the safety. A floor block holds raw processor instructions (x86-64, written the Intel way), which the compiler lays into the program untouched and unchecked. Inside a floor block you can touch any memory the program may touch — including memory that isn't yours, which is exactly why the floor is a door and not the house. Floor code runs only in <em>compiled</em> programs: the interpreter refuses any program that holds floor code, before anything runs, in plain words.</p>
+<p>A floor block is handed a <em>desk</em>, and hands answers back on it. The numbers it is handed wait in an array pointed to by the register <strong>r10</strong> — the first at <code>[r10]</code>, the second at <code>[r10 + 8]</code> — and <strong>r11</strong> says how many there are. The block's main answer is left in <strong>rax</strong>:</p>
+<div class="runbox">
+<textarea class="code" rows="5" spellcheck="false" aria-label="Nifla program">let plus = floor(41) {
+    mov rax, [r10]
+    add rax, 1
+}
+say plus</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>42</pre></div>
+</div>
+<p>Read it as: take the first handed number (41), add 1, leave the answer in <code>rax</code> — and the floor block, as a whole, <em>is</em> that answer, kept here on the shelf <code>plus</code>.</p>
+<p><strong>Your turn.</strong> Write a floor block that takes the first handed number and doubles it: hand it 21 and say the answer.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="5" spellcheck="false" aria-label="Nifla program">let doubled = floor(21) {
+    mov rax, [r10]
+    add rax, rax
+}
+say doubled</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>42</pre></div>
+</div></details>
+<h3>Step 2: two answers at once</h3>
+<p>Extra answers may be written into a results area at <strong>r13</strong>, with <strong>r14</strong> saying how many — and then the block gives back a list of them all. Division is the classic case: a quotient <em>and</em> a remainder:</p>
+<div class="runbox">
+<textarea class="code" rows="10" spellcheck="false" aria-label="Nifla program">let answers = floor(100, 7) {
+    mov rax, [r10]
+    mov rcx, [r10 + 8]
+    xor rdx, rdx
+    div rcx
+    mov [r13], rdx
+    mov r14, 1
+}
+say answers
+say answers[0] + answers[1]</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>[14, 2]
+16</pre></div>
+</div>
+<p>The desk's <em>meaning</em> — handed numbers, one text or bytes, a main answer and extra answers — is the contract on every machine the language targets; the register letters are each target's own. The Primer's Part 4 keeps the whole desk, and Part 5 names the second target's letters.</p>
+<h3>Step 3: bare metal, briefly and honestly</h3>
+<p>Below the floor is the basement itself: <em>bare metal</em>. <code>niflac --bare</code> compiles a program into a binary that boots on its own — no operating system, no runtime. The bare subset is sterner than the hosted language, and the compiler refuses whatever it cannot honestly hold, in plain words: whole numbers only, no lists and no objects, no <code>nothing</code> and no <code>maybe</code> — every value there is a machine word with one shape. In exchange, a bare program gets the machine's own furniture: the tick count, the keyboard, the memory map, the disk — and <code>say</code> writes to the machine's text screen. This is a look, not a lesson; the Primer's Part 5 and the README teach it properly. One taste, compiled by this book's proof and run when the language's bare suites boot its kind:</p>
+<pre class="codeblock">let t = ticks()
+waittick()
+if ticks() &gt; t {
+    say "Time passed"
+}</pre>
+<p class="note">Bare metal: this program runs on a real machine, not in a web page, so there is no Run button here.</p>
+<p>Cardnull OS 2 is built down there — a whole operating system standing on the bare subset, its feathers visiting through Lesson 9's door. You have now seen every floor of the house you have been learning in.</p>
+<p>That deserves a pause. The operating system is not written in some bigger language that Nifla imitates. It is written in <em>Nifla</em> — the language of your first lesson, of <code>say</code> and <code>let</code> and <code>make</code>. The subset down here is sterner because the ground is bare, but the words are the same words, all the way from hello world to the booting of a machine.</p>
+<h3>Your turn</h3>
+<p>A floor block that takes two numbers and gives back the first minus the second. Hand it 50 and 8; the answer should be 42.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="5" spellcheck="false" aria-label="Nifla program">let difference = floor(50, 8) {
+    mov rax, [r10]
+    sub rax, [r10 + 8]
+}
+say difference</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>42</pre></div>
+</div></details>
+<h3>You can now…</h3>
+<ul><li>say what the floor is: a marked door out of the</li></ul>
+<p>  language's safety, holding raw processor   instructions, compiled programs only;</p>
+<ul><li>read a floor block's desk: handed numbers at <code>r10</code>,</li></ul>
+<p>  the count at <code>r11</code>, the main answer in <code>rax</code>, extra   answers at <code>r13</code>/<code>r14</code>;</p>
+<ul><li>say what bare metal is — a program that boots with</li></ul>
+<p>  nothing beneath it — and why its subset is sterner.</p>
+<p>---</p>
+<div class="prevnext"><a href="lesson-9.html">← Lesson 9: Your first feather</a><a href="lesson-11.html">Lesson 11: Capstone: the giving ledger, whole →</a></div>
+</main>
+<footer>
+<p>Nifla is a public-domain programming language by Tyler Kovalevich — programmed like JavaScript, runs like Swift, all the way down to an operating system. The language, this site, and everything on it are given away freely.</p>
+</footer>
+<script src="nifla.js"></script>
+<script src="site.js"></script>
+<script data-goatcounter="https://jesuslovestyler.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

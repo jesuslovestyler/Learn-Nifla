@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 9 — Your first feather — Learn Nifla</title>
+<meta name="description" content="Lesson 9 of the Nifla tutorial: Your first feather. Read it, run every example on the page, then take your turn.">
+<meta property="og:title" content="Lesson 9 — Your first feather — Learn Nifla">
+<meta property="og:description" content="Lesson 9 of the Nifla tutorial: Your first feather. Read it, run every example on the page, then take your turn.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lesson 9 — Your first feather — Learn Nifla">
+<meta name="twitter:description" content="Lesson 9 of the Nifla tutorial: Your first feather. Read it, run every example on the page, then take your turn.">
+<meta name="twitter:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #fdfbf7; color: #1d2733; line-height: 1.55; }
+main { max-width: 44rem; margin: 0 auto; padding: 1rem 1.1rem 3rem; }
+h1 { font-size: 1.7rem; line-height: 1.25; }
+h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+h3 { font-size: 1.12rem; margin-top: 1.8rem; }
+p { margin: 0.7rem 0; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92em; background: #eef1f4; padding: 0.05em 0.3em; border-radius: 4px; }
+.topbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between; padding: 0.7rem 1.1rem; background: #12355f; }
+.topbar a { color: #fff; text-decoration: none; }
+.homebtn { background: #fff; color: #12355f !important; font-weight: bold; padding: 0.35rem 0.8rem; border-radius: 999px; }
+.sitenav { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.95rem; }
+.sitenav a { text-decoration: underline; }
+.runbox { border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem; margin: 1rem 0; background: #fff; }
+.runbox textarea.code { width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.45; border: 1px solid #d7dee6; border-radius: 6px; padding: 0.55rem; background: #f7f9fb; color: #10233c; resize: vertical; }
+.runrow { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.55rem; }
+.runbtn { background: #12355f; color: #fff; border: 0; border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.98rem; cursor: pointer; }
+.runbtn:active { background: #0c2747; }
+.runhint { font-size: 0.85rem; color: #5a6a7a; }
+.runbox .out { margin: 0.6rem 0 0; background: #10233c; color: #d9f2d9; border-radius: 6px; padding: 0.55rem 0.7rem; white-space: pre-wrap; word-break: break-word; font-size: 0.92rem; }
+.runbox .out.err { background: #3c1414; color: #ffd9d9; }
+.expected { margin-top: 0.6rem; }
+.expected-label { margin: 0 0 0.25rem; font-size: 0.85rem; color: #5a6a7a; }
+.expected pre { margin: 0; background: #f1f4ec; border: 1px dashed #b9c4a8; border-radius: 6px; padding: 0.5rem 0.7rem; white-space: pre-wrap; font-size: 0.92rem; }
+pre.codeblock { background: #10233c; color: #e8eef4; border-radius: 8px; padding: 0.7rem 0.8rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.45; }
+.note { font-size: 0.9rem; color: #5a6a7a; font-style: italic; }
+details.answer { margin: 0.6rem 0 1rem; }
+details.answer summary { cursor: pointer; color: #12355f; font-weight: bold; }
+.lessonlist { list-style: none; padding: 0; }
+.lessonlist li { margin: 0.55rem 0; }
+.lessonlist a { display: block; background: #fff; border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem 0.9rem; color: #12355f; text-decoration: none; font-weight: bold; }
+.lessonlist a span { display: block; font-weight: normal; color: #5a6a7a; font-size: 0.9rem; margin-top: 0.15rem; }
+.prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; }
+.prevnext a { color: #12355f; }
+footer { max-width: 44rem; margin: 0 auto; padding: 0 1.1rem 2rem; font-size: 0.88rem; color: #5a6a7a; }
+</style>
+</head>
+<body>
+<div class="topbar">
+<a class="homebtn" href="https://jesuslovestyler.com/">⌂ Home</a>
+<nav class="sitenav">
+<a href="index.html">Lessons</a>
+<a href="try.html">Try Nifla</a>
+</nav>
+</div>
+<main>
+<h1>Lesson 9 — Your first feather</h1>
+<h3>Step 1: a program that visits</h3>
+<p>Every program so far has owned its machine: it starts, it runs, it ends. A <em>guest</em> program is different. It is built to be laid inside another program — a <em>host</em> — which hands it one number, lets it run, and receives a parting number back. The guest does not boot and does not stop the machine; it <em>visits</em>.</p>
+<p>A guest is written in the bare subset of Nifla (the next lesson looks downstairs properly; for now, know that on bare metal the language is sterner and smaller), and it uses two small tools of its own: <code>guestvalue()</code> reads the number the host handed in, and <code>guestgive(n)</code> leaves the parting number:</p>
+<pre class="codeblock">let gift = guestvalue()
+say "A feather is visiting."
+say "The host sent " + gift
+guestgive(gift + 1)</pre>
+<p class="note">Bare metal: this program runs on a real machine, not in a web page, so there is no Run button here.</p>
+<p>That program is not run by this book's proof — it is <em>compiled</em>, with the flags the next step shows, and it runs when a host calls it through its door. Its <code>say</code> lines speak on the host's screen, in the host's house, as a guest should.</p>
+<h3>Step 2: the card</h3>
+<p>A guest by itself is just a program. A <em>feather</em> is a guest together with its <em>card</em>, made by the compiler in one step:</p>
+<pre class="codeblock">./niflac --bare --guest --feather visitor.nifla -o visitor.feather</pre>
+<p>The card stands at the feather's head, in plain text — the program's name, what it needs, how many bytes the program is, and a checksum of those bytes (a reckoning called FNV-1a-64, which any different byte anywhere changes). Here is a real card, from a real build of the program in Step 1:</p>
+<pre class="codeblock">CARDNULL FEATHER 1
+name: visitor
+needs: the guest door (desk version 1)
+bytes: 1732
+checksum: 2ce37ea9666eea2e</pre>
+<p>A host's <em>door</em> is the part of the host that receives feathers. The door reads the card, reckons the checksum over the program bytes that follow it, and lets the feather in only when card and program agree — laying it at the <em>doorstep</em>, a fixed address (2 MiB) the guest was linked for, and calling it there. The honesty of it, stated once and plainly: the checksum proves the bytes match the card and nothing more — it is a card, not a signature — and there is no isolation: host and guest share one memory, and a faulting guest stops the whole machine. A feather is a trusted visitor, checked at the door, not a prisoner in a cell.</p>
+<h3>Step 3: the doorman's test</h3>
+<p>Anyone can run the door's test before any door is involved. <code>feathercheck</code> reads a feather and answers in plain words whether its card is true — and answers with its exit code too (Lesson 8): 0 for true, 1 for not true. On the feather built above:</p>
+<pre class="codeblock">./feathercheck visitor.feather</pre>
+<pre class="codeblock">Feather: visitor
+Needs: the guest door (desk version 1)
+The card says the program is 1732 bytes, with checksum 2ce37ea9666eea2e.
+The program as it stands is 1732 bytes, with checksum 2ce37ea9666eea2e.
+The card is true: the program is whole, and a door may let this feather in.</pre>
+<p><strong>Your turn.</strong> In your own copy of the feather file, change one byte anywhere in the program part — a hex editor will do it, or flip a letter well past the card — and run <code>feathercheck</code> again. Before you run it, say out loud what you expect: which line will change, and which will not?</p>
+<p>The name and needs lines stand unchanged — the card is untouched. The reckoned line changes, because the program no longer matches its card, and the verdict turns:</p>
+<pre class="codeblock">Feather: visitor
+Needs: the guest door (desk version 1)
+The card says the program is 1732 bytes, with checksum 2ce37ea9666eea2e.
+The program as it stands is 1732 bytes, with checksum 7496d3f0a6fbd8b9.
+The card is not true: the program does not match its card, so a door must refuse this feather.</pre>
+<p>(Your reckoned checksum will differ from this one — it depends on which byte you changed. The shape of the answer will not differ.)</p>
+<h3>The living example</h3>
+<p>This is not a toy mechanism. Cardnull OS 2 — an operating system written in Nifla — opens with a welcome feather that visits through exactly this door. Its card, as the Primer records it:</p>
+<pre class="codeblock">CARDNULL FEATHER 1
+name: welcome-feather
+needs: the guest door (desk version 1)
+bytes: 2656
+checksum: 0b2452a707571de8</pre>
+<p>The feather you just made is the welcome feather's younger sibling: same card, same door, same test.</p>
+<p>Sit with that a moment. A few lessons ago you compiled a greeter and thought it a big step. Now you have built, card and all, the same kind of program an operating system opens its door to — in the same language, with the same words you started with.</p>
+<h3>Your turn</h3>
+<p>Write a feather of your own: a guest that is handed a number and gives back three times it. (It will be compiled with <code>--bare --guest</code> by the proof, as every guest in this book is.)</p>
+<pre class="codeblock">let gift = guestvalue()
+guestgive(gift * 3)</pre>
+<p class="note">Bare metal: this program runs on a real machine, not in a web page, so there is no Run button here.</p>
+<h3>You can now…</h3>
+<ul><li>say what a guest is: a program that visits a host,</li></ul>
+<p>  handed one number and leaving one number;</p>
+<ul><li>make a feather with `niflac --bare --guest</li></ul>
+<p>  --feather` — a guest with its card laid on it;</p>
+<ul><li>read a card: name, needs, byte count, checksum;</li><li>test any feather with <code>feathercheck</code>, and read its</li></ul>
+<p>  plain-words verdict, true or not true.</p>
+<p>---</p>
+<div class="prevnext"><a href="lesson-8.html">← Lesson 8: Standing on its own</a><a href="lesson-10.html">Lesson 10: A first look downstairs →</a></div>
+</main>
+<footer>
+<p>Nifla is a public-domain programming language by Tyler Kovalevich — programmed like JavaScript, runs like Swift, all the way down to an operating system. The language, this site, and everything on it are given away freely.</p>
+</footer>
+<script src="nifla.js"></script>
+<script src="site.js"></script>
+<script data-goatcounter="https://jesuslovestyler.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

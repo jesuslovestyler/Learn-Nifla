@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 3 — Keeping many things — Learn Nifla</title>
+<meta name="description" content="Lesson 3 of the Nifla tutorial: Keeping many things. Read it, run every example on the page, then take your turn.">
+<meta property="og:title" content="Lesson 3 — Keeping many things — Learn Nifla">
+<meta property="og:description" content="Lesson 3 of the Nifla tutorial: Keeping many things. Read it, run every example on the page, then take your turn.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lesson 3 — Keeping many things — Learn Nifla">
+<meta name="twitter:description" content="Lesson 3 of the Nifla tutorial: Keeping many things. Read it, run every example on the page, then take your turn.">
+<meta name="twitter:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #fdfbf7; color: #1d2733; line-height: 1.55; }
+main { max-width: 44rem; margin: 0 auto; padding: 1rem 1.1rem 3rem; }
+h1 { font-size: 1.7rem; line-height: 1.25; }
+h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+h3 { font-size: 1.12rem; margin-top: 1.8rem; }
+p { margin: 0.7rem 0; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92em; background: #eef1f4; padding: 0.05em 0.3em; border-radius: 4px; }
+.topbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between; padding: 0.7rem 1.1rem; background: #12355f; }
+.topbar a { color: #fff; text-decoration: none; }
+.homebtn { background: #fff; color: #12355f !important; font-weight: bold; padding: 0.35rem 0.8rem; border-radius: 999px; }
+.sitenav { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.95rem; }
+.sitenav a { text-decoration: underline; }
+.runbox { border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem; margin: 1rem 0; background: #fff; }
+.runbox textarea.code { width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.45; border: 1px solid #d7dee6; border-radius: 6px; padding: 0.55rem; background: #f7f9fb; color: #10233c; resize: vertical; }
+.runrow { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.55rem; }
+.runbtn { background: #12355f; color: #fff; border: 0; border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.98rem; cursor: pointer; }
+.runbtn:active { background: #0c2747; }
+.runhint { font-size: 0.85rem; color: #5a6a7a; }
+.runbox .out { margin: 0.6rem 0 0; background: #10233c; color: #d9f2d9; border-radius: 6px; padding: 0.55rem 0.7rem; white-space: pre-wrap; word-break: break-word; font-size: 0.92rem; }
+.runbox .out.err { background: #3c1414; color: #ffd9d9; }
+.expected { margin-top: 0.6rem; }
+.expected-label { margin: 0 0 0.25rem; font-size: 0.85rem; color: #5a6a7a; }
+.expected pre { margin: 0; background: #f1f4ec; border: 1px dashed #b9c4a8; border-radius: 6px; padding: 0.5rem 0.7rem; white-space: pre-wrap; font-size: 0.92rem; }
+pre.codeblock { background: #10233c; color: #e8eef4; border-radius: 8px; padding: 0.7rem 0.8rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.45; }
+.note { font-size: 0.9rem; color: #5a6a7a; font-style: italic; }
+details.answer { margin: 0.6rem 0 1rem; }
+details.answer summary { cursor: pointer; color: #12355f; font-weight: bold; }
+.lessonlist { list-style: none; padding: 0; }
+.lessonlist li { margin: 0.55rem 0; }
+.lessonlist a { display: block; background: #fff; border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem 0.9rem; color: #12355f; text-decoration: none; font-weight: bold; }
+.lessonlist a span { display: block; font-weight: normal; color: #5a6a7a; font-size: 0.9rem; margin-top: 0.15rem; }
+.prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; }
+.prevnext a { color: #12355f; }
+footer { max-width: 44rem; margin: 0 auto; padding: 0 1.1rem 2rem; font-size: 0.88rem; color: #5a6a7a; }
+</style>
+</head>
+<body>
+<div class="topbar">
+<a class="homebtn" href="https://jesuslovestyler.com/">⌂ Home</a>
+<nav class="sitenav">
+<a href="index.html">Lessons</a>
+<a href="try.html">Try Nifla</a>
+</nav>
+</div>
+<main>
+<h1>Lesson 3 — Keeping many things</h1>
+<h3>Step 1: a row of values, reached by number</h3>
+<p>Real programs rarely keep one thing; they keep rows of things. A <em>list</em> is a row of values between <code>[ ]</code>, separated by commas. Items are numbered from 0 — the first item is <code>list[0]</code> — and <code>list[i]</code> reaches one item. Here is a garden, kept as a list of its rows:</p>
+<div class="runbox">
+<textarea class="code" rows="5" spellcheck="false" aria-label="Nifla program">let rows = ["beans", "collards", "lettuce"]
+say rows[0]
+say rows[2]
+rows[1] = "kale"
+say rows</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>beans
+lettuce
+["beans", "kale", "lettuce"]</pre></div>
+</div>
+<p>Reaching a shelf inside the row works with the same <code>=</code> as any shelf: <code>rows[1] = "kale"</code> replaced the second item. Reaching <em>past</em> the end of a list is refused in plain words that say how many items there are — try <code>say rows[9]</code> in your own copy and read the refusal; it is your first, and it is kind.</p>
+<p><strong>Your turn.</strong> Keep a list of three colors. Say the last one — remember, the counting starts at 0, so the last of three is number 2.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="2" spellcheck="false" aria-label="Nifla program">let colors = ["red", "green", "blue"]
+say colors[2]</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>blue</pre></div>
+</div></details>
+<h3>Step 2: the toolbox</h3>
+<p>The <em>toolbox</em> is the set of tools a program calls by name, like functions that were always there. Each is handed values in parentheses and hands one value back. Hand a tool the wrong kind of value and it refuses in plain words, naming the tool and showing how it is called. You have already used two: <code>length</code>, which counts, and <code>append</code>, which adds one item to the end of a list:</p>
+<div class="runbox">
+<textarea class="code" rows="4" spellcheck="false" aria-label="Nifla program">let rows = ["beans", "collards", "lettuce"]
+append(rows, "scallions")
+say length(rows)
+say rows</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>4
+["beans", "collards", "lettuce", "scallions"]</pre></div>
+</div>
+<p><strong>Your turn.</strong> Start with the list <code>[10, 20]</code>, append 30 to it, and say how many items it holds now.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="3" spellcheck="false" aria-label="Nifla program">let numbers = [10, 20]
+append(numbers, 30)
+say length(numbers)</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>3</pre></div>
+</div></details>
+<h3>Step 3: text, taken apart and put together</h3>
+<p>Three tools do most of the everyday text work. <code>sorted</code> hands back a <em>new</em> list in order (the list it was given is left as it was). <code>join</code> speaks every item of a list and joins the spoken forms with a separator between them. <code>split</code> is join's way back — it cuts text at every separator and gives back the pieces:</p>
+<div class="runbox">
+<textarea class="code" rows="5" spellcheck="false" aria-label="Nifla program">let shopping = ["rice", "beans", "apples"]
+say sorted(shopping)
+say join(shopping, ", ")
+let words = split("rice, beans, apples", ", ")
+say words[1]</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>["apples", "beans", "rice"]
+rice, beans, apples
+beans</pre></div>
+</div>
+<p><strong>Your turn.</strong> Cut the text "sun-moon-stars" at its dashes with <code>split</code>, and say the middle piece.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="2" spellcheck="false" aria-label="Nifla program">let pieces = split("sun-moon-stars", "-")
+say pieces[1]</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>moon</pre></div>
+</div></details>
+<p>Two smaller tools finish the set. <code>find</code> gives the character number where a piece of text first appears, counting from 0 — or -1 when it is not there at all. <code>part</code> takes a piece of text: <code>part(text, start, count)</code>:</p>
+<div class="runbox">
+<textarea class="code" rows="3" spellcheck="false" aria-label="Nifla program">say find("garden", "den")
+say find("garden", "xyz")
+say part("garden", 0, 3)</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>3
+-1
+gar</pre></div>
+</div>
+<p><strong>Your turn.</strong> Use <code>part</code> to take the last two characters of "Tyler" — they start at character 3.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="2" spellcheck="false" aria-label="Nifla program">say part("Tyler", 3, 2)</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>er</pre></div>
+</div></details>
+<h3>Step 4: a card of facts</h3>
+<p>An <em>object</em> is the other shape of keeping: values with named fields, written between <code>{ }</code>, each field a name, a colon, and a value. <code>plant.name</code> reaches a field, and a field can be given — or given for the first time — with the same dot:</p>
+<div class="runbox">
+<textarea class="code" rows="5" spellcheck="false" aria-label="Nifla program">let plant = { name: "yardlong beans", watered: true }
+say plant.name
+plant.watered = false
+say plant
+say fieldnames(plant)</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>yardlong beans
+{ name: "yardlong beans", watered: false }
+["name", "watered"]</pre></div>
+</div>
+<p>Fields keep the order they were first given, as the spoken form shows, and <code>fieldnames</code> lists them. A list answers "what stands in the row?"; an object answers "what do we know about this one thing?"</p>
+<p><strong>Your turn.</strong> Make an object for a dog: a <code>name</code> field and an <code>age</code> field. Say the dog's name, then give the dog a brand-new field, <code>good</code>, set to <code>true</code>, and say the whole object.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="4" spellcheck="false" aria-label="Nifla program">let dog = { name: "Sadie", age: 4 }
+say dog.name
+dog.good = true
+say dog</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Sadie
+{ name: "Sadie", age: 4, good: true }</pre></div>
+</div></details>
+<h3>The ledger grows: gifts with names</h3>
+<p>Now the amounts from Lesson 2 get their names. Each gift becomes an object — who it went to, how many cents — and the book becomes a list of those objects. A list of objects is how most real keeping is done:</p>
+<div class="runbox">
+<textarea class="code" rows="7" spellcheck="false" aria-label="Nifla program">let gifts = []
+append(gifts, { who: "Feeding America", cents: 620 })
+append(gifts, { who: "Barry Cunningham", cents: 500 })
+append(gifts, { who: "Feeding America", cents: 1342 })
+for gift in gifts {
+    say gift.who + ": " + gift.cents + " cents"
+}</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Feeding America: 620 cents
+Barry Cunningham: 500 cents
+Feeding America: 1342 cents</pre></div>
+</div>
+<p>The total is missing — on purpose. Adding gifts and totalling them is work the ledger will do again and again, and work done again and again deserves a tool of its own. That is the next lesson.</p>
+<h3>Your turn</h3>
+<p>Here are three tools out of order: "shovel", "hoe", "rake". Keep them in a list, print the list sorted, and then print the second tool in the sorted order.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="4" spellcheck="false" aria-label="Nifla program">let tools = ["shovel", "hoe", "rake"]
+let inOrder = sorted(tools)
+say inOrder
+say inOrder[1]</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>["hoe", "rake", "shovel"]
+rake</pre></div>
+</div></details>
+<h3>You can now…</h3>
+<ul><li>keep a row of values in a list, reach items by</li></ul>
+<p>  number from 0, and replace them;</p>
+<ul><li>grow a list with <code>append</code> and count it with</li></ul>
+<p>  <code>length</code>;</p>
+<ul><li>sort with <code>sorted</code>, join with <code>join</code>, cut text with</li></ul>
+<p>  <code>split</code>, search with <code>find</code>, and take pieces with   <code>part</code>;</p>
+<ul><li>keep a card of named facts in an object, reach and</li></ul>
+<p>  add fields with the dot, and list them with   <code>fieldnames</code>;</p>
+<ul><li>weave the two together: a list of objects.</li></ul>
+<p>---</p>
+<div class="prevnext"><a href="lesson-2.html">← Lesson 2: Deciding and repeating</a><a href="lesson-4.html">Lesson 4: Making your own tools →</a></div>
+</main>
+<footer>
+<p>Nifla is a public-domain programming language by Tyler Kovalevich — programmed like JavaScript, runs like Swift, all the way down to an operating system. The language, this site, and everything on it are given away freely.</p>
+</footer>
+<script src="nifla.js"></script>
+<script src="site.js"></script>
+<script data-goatcounter="https://jesuslovestyler.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

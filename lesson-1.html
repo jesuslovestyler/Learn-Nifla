@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 1 — Saying and keeping — Learn Nifla</title>
+<meta name="description" content="Lesson 1 of the Nifla tutorial: Saying and keeping. Read it, run every example on the page, then take your turn.">
+<meta property="og:title" content="Lesson 1 — Saying and keeping — Learn Nifla">
+<meta property="og:description" content="Lesson 1 of the Nifla tutorial: Saying and keeping. Read it, run every example on the page, then take your turn.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lesson 1 — Saying and keeping — Learn Nifla">
+<meta name="twitter:description" content="Lesson 1 of the Nifla tutorial: Saying and keeping. Read it, run every example on the page, then take your turn.">
+<meta name="twitter:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #fdfbf7; color: #1d2733; line-height: 1.55; }
+main { max-width: 44rem; margin: 0 auto; padding: 1rem 1.1rem 3rem; }
+h1 { font-size: 1.7rem; line-height: 1.25; }
+h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+h3 { font-size: 1.12rem; margin-top: 1.8rem; }
+p { margin: 0.7rem 0; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92em; background: #eef1f4; padding: 0.05em 0.3em; border-radius: 4px; }
+.topbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between; padding: 0.7rem 1.1rem; background: #12355f; }
+.topbar a { color: #fff; text-decoration: none; }
+.homebtn { background: #fff; color: #12355f !important; font-weight: bold; padding: 0.35rem 0.8rem; border-radius: 999px; }
+.sitenav { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.95rem; }
+.sitenav a { text-decoration: underline; }
+.runbox { border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem; margin: 1rem 0; background: #fff; }
+.runbox textarea.code { width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.45; border: 1px solid #d7dee6; border-radius: 6px; padding: 0.55rem; background: #f7f9fb; color: #10233c; resize: vertical; }
+.runrow { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.55rem; }
+.runbtn { background: #12355f; color: #fff; border: 0; border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.98rem; cursor: pointer; }
+.runbtn:active { background: #0c2747; }
+.runhint { font-size: 0.85rem; color: #5a6a7a; }
+.runbox .out { margin: 0.6rem 0 0; background: #10233c; color: #d9f2d9; border-radius: 6px; padding: 0.55rem 0.7rem; white-space: pre-wrap; word-break: break-word; font-size: 0.92rem; }
+.runbox .out.err { background: #3c1414; color: #ffd9d9; }
+.expected { margin-top: 0.6rem; }
+.expected-label { margin: 0 0 0.25rem; font-size: 0.85rem; color: #5a6a7a; }
+.expected pre { margin: 0; background: #f1f4ec; border: 1px dashed #b9c4a8; border-radius: 6px; padding: 0.5rem 0.7rem; white-space: pre-wrap; font-size: 0.92rem; }
+pre.codeblock { background: #10233c; color: #e8eef4; border-radius: 8px; padding: 0.7rem 0.8rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.45; }
+.note { font-size: 0.9rem; color: #5a6a7a; font-style: italic; }
+details.answer { margin: 0.6rem 0 1rem; }
+details.answer summary { cursor: pointer; color: #12355f; font-weight: bold; }
+.lessonlist { list-style: none; padding: 0; }
+.lessonlist li { margin: 0.55rem 0; }
+.lessonlist a { display: block; background: #fff; border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem 0.9rem; color: #12355f; text-decoration: none; font-weight: bold; }
+.lessonlist a span { display: block; font-weight: normal; color: #5a6a7a; font-size: 0.9rem; margin-top: 0.15rem; }
+.prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; }
+.prevnext a { color: #12355f; }
+footer { max-width: 44rem; margin: 0 auto; padding: 0 1.1rem 2rem; font-size: 0.88rem; color: #5a6a7a; }
+</style>
+</head>
+<body>
+<div class="topbar">
+<a class="homebtn" href="https://jesuslovestyler.com/">⌂ Home</a>
+<nav class="sitenav">
+<a href="index.html">Lessons</a>
+<a href="try.html">Try Nifla</a>
+</nav>
+</div>
+<main>
+<h1>Lesson 1 — Saying and keeping</h1>
+<h3>Step 1: your first program</h3>
+<p>Every programmer's first program, in every language, says hello to the world. Here is yours. Type it into a file called <code>hello.nifla</code>:</p>
+<div class="runbox">
+<textarea class="code" rows="2" spellcheck="false" aria-label="Nifla program">say "Hello, world"</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Hello, world</pre></div>
+</div>
+<p>Now run it:</p>
+<pre class="codeblock">./nifla hello.nifla</pre>
+<p>and the machine answers: <code>Hello, world</code>.</p>
+<p>Stop and notice what just happened, because it is the whole shape of programming: you wrote an instruction; the machine followed it exactly. <code>say</code> is the language's word for speaking — hand it a value and it prints the value and a new line. The words between the double quotes are <em>text</em>: written words kept as a value.</p>
+<p>Notice how little ceremony there was: no setup, no compiling, no waiting — write it, run it, read what it says. That quickness is the JavaScript half of Nifla's promise, and the early lessons live there. The other half is waiting in Lesson 8, and it is worth the walk.</p>
+<p><strong>Your turn.</strong> Make the program say your own name instead. One word changes.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="2" spellcheck="false" aria-label="Nifla program">say "Tyler"</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Tyler</pre></div>
+</div></details>
+<h3>Step 2: keeping a value</h3>
+<p>A program that only repeats what it was told is a parrot. Programs get interesting when they <em>keep</em> things. <code>let</code> gives a value a name:</p>
+<div class="runbox">
+<textarea class="code" rows="2" spellcheck="false" aria-label="Nifla program">let name = "Tyler"
+say name</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Tyler</pre></div>
+</div>
+<p>A name with a value kept in it is what programmers call a <em>variable</em>. Think of it as a labeled shelf: the label stays, and what stands on the shelf can change. After <code>let</code>, the name can be used anywhere the value could.</p>
+<p><strong>Your turn.</strong> Keep the text "Shalom" on a shelf called <code>greeting</code>, then say what is on the shelf.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="2" spellcheck="false" aria-label="Nifla program">let greeting = "Shalom"
+say greeting</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Shalom</pre></div>
+</div></details>
+<h3>Step 3: building a sentence</h3>
+<p>Joining text with <code>+</code> speaks the other side into the text, whatever it is. That is how a program builds a sentence out of pieces — some kept on shelves, some written on the spot:</p>
+<div class="runbox">
+<textarea class="code" rows="2" spellcheck="false" aria-label="Nifla program">let name = "Tyler"
+say "I am " + name + "."</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>I am Tyler.</pre></div>
+</div>
+<p><strong>Your turn.</strong> Keep a town on a shelf called <code>town</code> — any town you like — and say the sentence "I live in " followed by the town and a full stop, all in one <code>say</code>.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="2" spellcheck="false" aria-label="Nifla program">let town = "Washington"
+say "I live in " + town + "."</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>I live in Washington.</pre></div>
+</div></details>
+<h3>Step 4: numbers, and a shelf that changes</h3>
+<p>Numbers are kept the same way, and reckoned with <code>+</code>, <code>-</code>, <code>*</code>, and <code>/</code>. And a shelf's contents can be replaced with a plain <code>=</code>:</p>
+<div class="runbox">
+<textarea class="code" rows="4" spellcheck="false" aria-label="Nifla program">let years = 29
+say years * 365
+years = years + 1
+say years</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>10585
+30</pre></div>
+</div>
+<p>Read the middle line slowly: <code>years = years + 1</code> takes what is on the <code>years</code> shelf, adds one, and puts the answer back on the same shelf. (The 10585 is a small honest lie worth noticing: 29 × 365 counts the years in days <em>without</em> leap days. Programs reckon exactly what you tell them to — no more, no less. Saying precisely what you mean is most of the craft.)</p>
+<p><strong>Your turn.</strong> Keep the number 7 on a shelf called <code>loaves</code>. Say the shelf doubled, then put three more loaves on the shelf and say the shelf again.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="4" spellcheck="false" aria-label="Nifla program">let loaves = 7
+say loaves * 2
+loaves = loaves + 3
+say loaves</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>14
+10</pre></div>
+</div></details>
+<h3>The ledger grows: one gift, said out loud</h3>
+<p>Here is the first piece of the course's project. A <em>giving ledger</em> is a little book that records gifts — who they went to, and how much, kept in exact cents so nothing is ever rounded. (A real tally this book's first reader keeps works exactly so.) Its first piece is just one gift, kept and said:</p>
+<div class="runbox">
+<textarea class="code" rows="3" spellcheck="false" aria-label="Nifla program">let who = "Feeding America"
+let cents = 620
+say who + ": " + cents + " cents"</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Feeding America: 620 cents</pre></div>
+</div>
+<p>Notice the number <code>cents</code> was spoken into the sentence by the <code>+</code>, exactly as <code>name</code> was. That one line — a name, an amount, a sentence — is the seed of the whole ledger.</p>
+<h3>Your turn</h3>
+<p>Keep your own name and the year you were born on two shelves. Say your name, then work out — from the year on the shelf, not from a number you reckon in your head — how old you turn in 2026, and say that.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="4" spellcheck="false" aria-label="Nifla program">let name = "Miriam"
+let born = 1990
+say name
+say 2026 - born</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Miriam
+36</pre></div>
+</div></details>
+<h3>You can now…</h3>
+<ul><li>write a program and run it with <code>nifla</code>;</li><li>speak any value with <code>say</code>;</li><li>keep a value on a named shelf with <code>let</code>, and change</li></ul>
+<p>  what the shelf holds with <code>=</code>;</p>
+<ul><li>build a sentence by joining text with <code>+</code>, speaking</li></ul>
+<p>  numbers into it as you go;</p>
+<ul><li>reckon with <code>+</code>, <code>-</code>, <code>*</code>, and <code>/</code>.</li></ul>
+<p>Two small things to carry forward: lines that begin with <code>//</code> are <em>comments</em> — notes to the reader that the language steps over. And a name made inside a pair of braces <code>{ }</code> belongs to that stretch of the program and is not seen outside it. You will meet braces in the very next lesson.</p>
+<p>---</p>
+<div class="prevnext"><a href="index.html">← All lessons</a><a href="lesson-2.html">Lesson 2: Deciding and repeating →</a></div>
+</main>
+<footer>
+<p>Nifla is a public-domain programming language by Tyler Kovalevich — programmed like JavaScript, runs like Swift, all the way down to an operating system. The language, this site, and everything on it are given away freely.</p>
+</footer>
+<script src="nifla.js"></script>
+<script src="site.js"></script>
+<script data-goatcounter="https://jesuslovestyler.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

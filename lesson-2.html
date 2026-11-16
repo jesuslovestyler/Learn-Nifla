@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 2 — Deciding and repeating — Learn Nifla</title>
+<meta name="description" content="Lesson 2 of the Nifla tutorial: Deciding and repeating. Read it, run every example on the page, then take your turn.">
+<meta property="og:title" content="Lesson 2 — Deciding and repeating — Learn Nifla">
+<meta property="og:description" content="Lesson 2 of the Nifla tutorial: Deciding and repeating. Read it, run every example on the page, then take your turn.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lesson 2 — Deciding and repeating — Learn Nifla">
+<meta name="twitter:description" content="Lesson 2 of the Nifla tutorial: Deciding and repeating. Read it, run every example on the page, then take your turn.">
+<meta name="twitter:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #fdfbf7; color: #1d2733; line-height: 1.55; }
+main { max-width: 44rem; margin: 0 auto; padding: 1rem 1.1rem 3rem; }
+h1 { font-size: 1.7rem; line-height: 1.25; }
+h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+h3 { font-size: 1.12rem; margin-top: 1.8rem; }
+p { margin: 0.7rem 0; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92em; background: #eef1f4; padding: 0.05em 0.3em; border-radius: 4px; }
+.topbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between; padding: 0.7rem 1.1rem; background: #12355f; }
+.topbar a { color: #fff; text-decoration: none; }
+.homebtn { background: #fff; color: #12355f !important; font-weight: bold; padding: 0.35rem 0.8rem; border-radius: 999px; }
+.sitenav { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.95rem; }
+.sitenav a { text-decoration: underline; }
+.runbox { border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem; margin: 1rem 0; background: #fff; }
+.runbox textarea.code { width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.45; border: 1px solid #d7dee6; border-radius: 6px; padding: 0.55rem; background: #f7f9fb; color: #10233c; resize: vertical; }
+.runrow { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.55rem; }
+.runbtn { background: #12355f; color: #fff; border: 0; border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.98rem; cursor: pointer; }
+.runbtn:active { background: #0c2747; }
+.runhint { font-size: 0.85rem; color: #5a6a7a; }
+.runbox .out { margin: 0.6rem 0 0; background: #10233c; color: #d9f2d9; border-radius: 6px; padding: 0.55rem 0.7rem; white-space: pre-wrap; word-break: break-word; font-size: 0.92rem; }
+.runbox .out.err { background: #3c1414; color: #ffd9d9; }
+.expected { margin-top: 0.6rem; }
+.expected-label { margin: 0 0 0.25rem; font-size: 0.85rem; color: #5a6a7a; }
+.expected pre { margin: 0; background: #f1f4ec; border: 1px dashed #b9c4a8; border-radius: 6px; padding: 0.5rem 0.7rem; white-space: pre-wrap; font-size: 0.92rem; }
+pre.codeblock { background: #10233c; color: #e8eef4; border-radius: 8px; padding: 0.7rem 0.8rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.45; }
+.note { font-size: 0.9rem; color: #5a6a7a; font-style: italic; }
+details.answer { margin: 0.6rem 0 1rem; }
+details.answer summary { cursor: pointer; color: #12355f; font-weight: bold; }
+.lessonlist { list-style: none; padding: 0; }
+.lessonlist li { margin: 0.55rem 0; }
+.lessonlist a { display: block; background: #fff; border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem 0.9rem; color: #12355f; text-decoration: none; font-weight: bold; }
+.lessonlist a span { display: block; font-weight: normal; color: #5a6a7a; font-size: 0.9rem; margin-top: 0.15rem; }
+.prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; }
+.prevnext a { color: #12355f; }
+footer { max-width: 44rem; margin: 0 auto; padding: 0 1.1rem 2rem; font-size: 0.88rem; color: #5a6a7a; }
+</style>
+</head>
+<body>
+<div class="topbar">
+<a class="homebtn" href="https://jesuslovestyler.com/">⌂ Home</a>
+<nav class="sitenav">
+<a href="index.html">Lessons</a>
+<a href="try.html">Try Nifla</a>
+</nav>
+</div>
+<main>
+<h1>Lesson 2 — Deciding and repeating</h1>
+<h3>Step 1: asking a question</h3>
+<p>A parrot repeats; a program <em>decides</em>. A comparison asks a question and answers <code>true</code> or <code>false</code>: <code>==</code> (is it the same), <code>!=</code> (is it different), <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>:</p>
+<div class="runbox">
+<textarea class="code" rows="4" spellcheck="false" aria-label="Nifla program">say 3 == 3
+say 3 != 3
+say 2 &lt; 5
+say "apple" == "apple"</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>true
+false
+true
+true</pre></div>
+</div>
+<p>One warning to file away: values of different kinds are never equal — the number 3 is not the text "3" — so a question always compares like with like.</p>
+<p><strong>Your turn.</strong> Ask two questions: is 10 greater than 7, and is "bread" the same as "bread"? Say both answers.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="2" spellcheck="false" aria-label="Nifla program">say 10 &gt; 7
+say "bread" == "bread"</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>true
+true</pre></div>
+</div></details>
+<h3>Step 2: walking the road the answer opens</h3>
+<p><code>if</code> runs a stretch of code when its question answers true, and <code>else</code> — when there is one — runs the other stretch when it answers false. The stretch lives between braces. Here is a door-keeper:</p>
+<div class="runbox">
+<textarea class="code" rows="6" spellcheck="false" aria-label="Nifla program">let years = 29
+if years &gt;= 18 {
+    say "Come in - you are grown."
+} else {
+    say "Wait a little longer."
+}</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Come in - you are grown.</pre></div>
+</div>
+<p>Change the 29 to 12 in your own copy and run it again: the other road is taken. The program did not get smarter; it <em>asked</em>, and walked the road the answer opened.</p>
+<p><strong>Your turn.</strong> Keep a number of coins on a shelf. If there are at least 100, say "A full purse." Otherwise say "Still gathering." Try it with 250.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="6" spellcheck="false" aria-label="Nifla program">let coins = 250
+if coins &gt;= 100 {
+    say "A full purse."
+} else {
+    say "Still gathering."
+}</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>A full purse.</pre></div>
+</div></details>
+<h3>Step 3: again, while a question holds</h3>
+<p>Deciding once is half the craft. The other half is repeating. <code>while</code> repeats its stretch as long as its question keeps answering true:</p>
+<div class="runbox">
+<textarea class="code" rows="6" spellcheck="false" aria-label="Nifla program">let n = 3
+while n &gt;= 1 {
+    say n
+    n = n - 1
+}
+say "Go"</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>3
+2
+1
+Go</pre></div>
+</div>
+<p>Read it as a story: <code>n</code> starts at 3; the question "is n still at least 1?" is asked before every round; inside, the program says <code>n</code> and then makes <code>n</code> smaller — and that making-smaller is what lets the loop ever end. A loop whose question never turns false would run forever, so the language stands guard: a program whose loops pass a million times without finishing is stopped and told so, in plain words.</p>
+<p><strong>Your turn.</strong> Count up instead of down: start at 1 and say 1, 2, 3, 4, 5, one per line, with a <code>while</code>.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="5" spellcheck="false" aria-label="Nifla program">let n = 1
+while n &lt;= 5 {
+    say n
+    n = n + 1
+}</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>1
+2
+3
+4
+5</pre></div>
+</div></details>
+<h3>Step 4: again, a counted number of times</h3>
+<p>When the number of rounds is known ahead of time, <code>repeat</code> says it outright. Here it builds a row of stars one star at a time — text can grow on a shelf just like a number can:</p>
+<div class="runbox">
+<textarea class="code" rows="5" spellcheck="false" aria-label="Nifla program">let row = ""
+repeat 5 {
+    row = row + "*"
+}
+say row</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>*****</pre></div>
+</div>
+<p><strong>Your turn.</strong> Build a row of 8 dashes the same way, and say it.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="5" spellcheck="false" aria-label="Nifla program">let row = ""
+repeat 8 {
+    row = row + "-"
+}
+say row</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>--------</pre></div>
+</div></details>
+<h3>Step 5: walking a row of things</h3>
+<p>A <em>list</em> is a row of values written between <code>[ ]</code>. <code>for … in</code> walks a list, taking each item in turn under a name:</p>
+<div class="runbox">
+<textarea class="code" rows="5" spellcheck="false" aria-label="Nifla program">let names = ["Ada", "Byron", "Caleb"]
+for name in names {
+    say "Hello, " + name
+}
+say "That is " + length(names) + " friends."</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Hello, Ada
+Hello, Byron
+Hello, Caleb
+That is 3 friends.</pre></div>
+</div>
+<p>(<code>length</code> counts the items in a list. It is a <em>toolbox</em> word, and the toolbox gets a lesson of its own next; lists get one too. For now: a list is a row of values, and <code>for</code> visits each one.)</p>
+<p><strong>Your turn.</strong> Walk the list <code>["sun", "moon", "stars"]</code> and say "I see the " before each one.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="4" spellcheck="false" aria-label="Nifla program">let things = ["sun", "moon", "stars"]
+for thing in things {
+    say "I see the " + thing
+}</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>I see the sun
+I see the moon
+I see the stars</pre></div>
+</div></details>
+<h3>Putting it together: the greeter that checks its work</h3>
+<div class="runbox">
+<textarea class="code" rows="9" spellcheck="false" aria-label="Nifla program">let names = ["Ada", "Byron", "Caleb"]
+let greeted = 0
+for name in names {
+    say "Hello, " + name
+    greeted = greeted + 1
+}
+if greeted == length(names) {
+    say "Everyone was greeted."
+}</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Hello, Ada
+Hello, Byron
+Hello, Caleb
+Everyone was greeted.</pre></div>
+</div>
+<p>The counter <code>greeted</code> is the program keeping a tally on a shelf while it works — the seed of every ledger, score, and total you will ever write.</p>
+<h3>The ledger grows: a first total</h3>
+<p>The ledger's gifts, kept for now as a row of amounts, and added up by walking the row:</p>
+<div class="runbox">
+<textarea class="code" rows="6" spellcheck="false" aria-label="Nifla program">let amounts = [620, 500, 1342]
+let total = 0
+for cents in amounts {
+    total = total + cents
+}
+say "Total so far: " + total + " cents"</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Total so far: 2462 cents</pre></div>
+</div>
+<p>Three gifts, one walk, one total. The amounts have no names attached yet — the next lesson fixes that.</p>
+<h3>Your turn</h3>
+<p>Use <code>while</code> to print the 3-times table from 1 to 5, one line per round, in this shape: <code>3 x 1 = 3</code>. Let the program reckon the answers — do not type them yourself.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="5" spellcheck="false" aria-label="Nifla program">let n = 1
+while n &lt;= 5 {
+    say "3 x " + n + " = " + (3 * n)
+    n = n + 1
+}</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>3 x 1 = 3
+3 x 2 = 6
+3 x 3 = 9
+3 x 4 = 12
+3 x 5 = 15</pre></div>
+</div></details>
+<h3>You can now…</h3>
+<ul><li>ask questions with <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>,</li></ul>
+<p>  and get <code>true</code> or <code>false</code> answers;</p>
+<ul><li>walk one of two roads with <code>if</code> and <code>else</code>;</li><li>repeat while a question holds, with <code>while</code>;</li><li>repeat a counted number of times, with <code>repeat</code>;</li><li>walk a list item by item with <code>for … in</code>;</li><li>keep a running tally while a loop works.</li></ul>
+<p>---</p>
+<div class="prevnext"><a href="lesson-1.html">← Lesson 1: Saying and keeping</a><a href="lesson-3.html">Lesson 3: Keeping many things →</a></div>
+</main>
+<footer>
+<p>Nifla is a public-domain programming language by Tyler Kovalevich — programmed like JavaScript, runs like Swift, all the way down to an operating system. The language, this site, and everything on it are given away freely.</p>
+</footer>
+<script src="nifla.js"></script>
+<script src="site.js"></script>
+<script data-goatcounter="https://jesuslovestyler.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

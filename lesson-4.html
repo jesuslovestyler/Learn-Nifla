@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 4 — Making your own tools — Learn Nifla</title>
+<meta name="description" content="Lesson 4 of the Nifla tutorial: Making your own tools. Read it, run every example on the page, then take your turn.">
+<meta property="og:title" content="Lesson 4 — Making your own tools — Learn Nifla">
+<meta property="og:description" content="Lesson 4 of the Nifla tutorial: Making your own tools. Read it, run every example on the page, then take your turn.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lesson 4 — Making your own tools — Learn Nifla">
+<meta name="twitter:description" content="Lesson 4 of the Nifla tutorial: Making your own tools. Read it, run every example on the page, then take your turn.">
+<meta name="twitter:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #fdfbf7; color: #1d2733; line-height: 1.55; }
+main { max-width: 44rem; margin: 0 auto; padding: 1rem 1.1rem 3rem; }
+h1 { font-size: 1.7rem; line-height: 1.25; }
+h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+h3 { font-size: 1.12rem; margin-top: 1.8rem; }
+p { margin: 0.7rem 0; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92em; background: #eef1f4; padding: 0.05em 0.3em; border-radius: 4px; }
+.topbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between; padding: 0.7rem 1.1rem; background: #12355f; }
+.topbar a { color: #fff; text-decoration: none; }
+.homebtn { background: #fff; color: #12355f !important; font-weight: bold; padding: 0.35rem 0.8rem; border-radius: 999px; }
+.sitenav { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.95rem; }
+.sitenav a { text-decoration: underline; }
+.runbox { border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem; margin: 1rem 0; background: #fff; }
+.runbox textarea.code { width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.45; border: 1px solid #d7dee6; border-radius: 6px; padding: 0.55rem; background: #f7f9fb; color: #10233c; resize: vertical; }
+.runrow { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.55rem; }
+.runbtn { background: #12355f; color: #fff; border: 0; border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.98rem; cursor: pointer; }
+.runbtn:active { background: #0c2747; }
+.runhint { font-size: 0.85rem; color: #5a6a7a; }
+.runbox .out { margin: 0.6rem 0 0; background: #10233c; color: #d9f2d9; border-radius: 6px; padding: 0.55rem 0.7rem; white-space: pre-wrap; word-break: break-word; font-size: 0.92rem; }
+.runbox .out.err { background: #3c1414; color: #ffd9d9; }
+.expected { margin-top: 0.6rem; }
+.expected-label { margin: 0 0 0.25rem; font-size: 0.85rem; color: #5a6a7a; }
+.expected pre { margin: 0; background: #f1f4ec; border: 1px dashed #b9c4a8; border-radius: 6px; padding: 0.5rem 0.7rem; white-space: pre-wrap; font-size: 0.92rem; }
+pre.codeblock { background: #10233c; color: #e8eef4; border-radius: 8px; padding: 0.7rem 0.8rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.45; }
+.note { font-size: 0.9rem; color: #5a6a7a; font-style: italic; }
+details.answer { margin: 0.6rem 0 1rem; }
+details.answer summary { cursor: pointer; color: #12355f; font-weight: bold; }
+.lessonlist { list-style: none; padding: 0; }
+.lessonlist li { margin: 0.55rem 0; }
+.lessonlist a { display: block; background: #fff; border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem 0.9rem; color: #12355f; text-decoration: none; font-weight: bold; }
+.lessonlist a span { display: block; font-weight: normal; color: #5a6a7a; font-size: 0.9rem; margin-top: 0.15rem; }
+.prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; }
+.prevnext a { color: #12355f; }
+footer { max-width: 44rem; margin: 0 auto; padding: 0 1.1rem 2rem; font-size: 0.88rem; color: #5a6a7a; }
+</style>
+</head>
+<body>
+<div class="topbar">
+<a class="homebtn" href="https://jesuslovestyler.com/">⌂ Home</a>
+<nav class="sitenav">
+<a href="index.html">Lessons</a>
+<a href="try.html">Try Nifla</a>
+</nav>
+</div>
+<main>
+<h1>Lesson 4 — Making your own tools</h1>
+<h3>Step 1: a stretch of code with a name</h3>
+<p>The toolbox tools were always there. The moment a program grows past a page, you start wanting tools of your own: a stretch of code with a name, that you can hand values to and that hands one value back. That is a <em>function</em>, and <code>make</code> builds one. <code>give</code> is how a function hands its answer back:</p>
+<div class="runbox">
+<textarea class="code" rows="5" spellcheck="false" aria-label="Nifla program">make greet(name) {
+    give "Hello, " + name + "."
+}
+say greet("Noki")
+say greet("Ada")</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Hello, Noki.
+Hello, Ada.</pre></div>
+</div>
+<p>The name in the parentheses is the function's <em>parameter</em> — its own shelf, filled fresh by whoever calls it. One function, any number of calls, each with its own filling.</p>
+<p><strong>Your turn.</strong> Make a function <code>farewell</code> that is handed a name and gives back "Goodbye, " joined with the name and a full stop. Call it on "Byron".</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="4" spellcheck="false" aria-label="Nifla program">make farewell(name) {
+    give "Goodbye, " + name + "."
+}
+say farewell("Byron")</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Goodbye, Byron.</pre></div>
+</div></details>
+<h3>Step 2: a function that reckons</h3>
+<div class="runbox">
+<textarea class="code" rows="5" spellcheck="false" aria-label="Nifla program">make twice(n) {
+    give n * 2
+}
+say twice(21)
+say twice(5)</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>42
+10</pre></div>
+</div>
+<p><strong>Your turn.</strong> Make <code>half</code>, which gives back its number divided by 2, and say <code>half(10)</code>.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="4" spellcheck="false" aria-label="Nifla program">make half(n) {
+    give n / 2
+}
+say half(10)</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>5</pre></div>
+</div></details>
+<h3>Step 3: a function with a loop inside</h3>
+<p>Anything a program can do, a function can do — loops included. This one builds a row of stars of any length:</p>
+<div class="runbox">
+<textarea class="code" rows="9" spellcheck="false" aria-label="Nifla program">make line(n) {
+    let row = ""
+    repeat n {
+        row = row + "*"
+    }
+    give row
+}
+say line(3)
+say line(7)</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>***
+*******</pre></div>
+</div>
+<p>Notice <code>let row</code> lives <em>inside</em> the function: each call gets a fresh shelf, so two calls never trip over each other. Names made inside a function's braces belong to that call alone.</p>
+<p><strong>Your turn.</strong> Make <code>dashes(n)</code> the same way, building a row of dashes, and say <code>dashes(4)</code>.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="8" spellcheck="false" aria-label="Nifla program">make dashes(n) {
+    let row = ""
+    repeat n {
+        row = row + "-"
+    }
+    give row
+}
+say dashes(4)</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>----</pre></div>
+</div></details>
+<h3>Step 4: a function that walks a list</h3>
+<div class="runbox">
+<textarea class="code" rows="9" spellcheck="false" aria-label="Nifla program">make average(numbers) {
+    let total = 0
+    for n in numbers {
+        total = total + n
+    }
+    give total / length(numbers)
+}
+say average([10, 20, 30])
+say average([3, 5])</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>20
+4</pre></div>
+</div>
+<p><strong>Your turn.</strong> Make <code>sum(numbers)</code> — the same walk without the dividing — and say <code>sum([1, 2, 3, 4])</code>.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="8" spellcheck="false" aria-label="Nifla program">make sum(numbers) {
+    let total = 0
+    for n in numbers {
+        total = total + n
+    }
+    give total
+}
+say sum([1, 2, 3, 4])</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>10</pre></div>
+</div></details>
+<h3>Putting it together: tools calling on tools</h3>
+<p>Functions that call on other functions are how big programs are built out of small, trustworthy pieces:</p>
+<div class="runbox">
+<textarea class="code" rows="18" spellcheck="false" aria-label="Nifla program">make line(n) {
+    let row = ""
+    repeat n {
+        row = row + "*"
+    }
+    give row
+}
+make average(numbers) {
+    let total = 0
+    for n in numbers {
+        total = total + n
+    }
+    give total / length(numbers)
+}
+let scores = [8, 9, 7]
+say line(12)
+say "Average score: " + average(scores)
+say line(12)</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>************
+Average score: 8
+************</pre></div>
+</div>
+<p>You have been writing a library without being told: <code>greet</code>, <code>twice</code>, <code>line</code>, <code>average</code> are <em>your</em> toolbox now, and any program you write can carry them at its top and call on them below. That is the whole secret of large programs — they are small programs, kept in functions, all the way down.</p>
+<p>One thing to keep in your pocket: a function that reaches its end without <code>give</code> hands back <em>nothing at all</em>. The next lesson makes that matter.</p>
+<h3>The ledger grows: the book gets its tools</h3>
+<div class="runbox">
+<textarea class="code" rows="18" spellcheck="false" aria-label="Nifla program">make addgift(gifts, who, cents) {
+    append(gifts, { who: who, cents: cents })
+}
+make total(gifts) {
+    let sum = 0
+    for gift in gifts {
+        sum = sum + gift.cents
+    }
+    give sum
+}
+let gifts = []
+addgift(gifts, "Feeding America", 620)
+addgift(gifts, "Barry Cunningham", 500)
+addgift(gifts, "Feeding America", 1342)
+for gift in gifts {
+    say gift.who + ": " + gift.cents + " cents"
+}
+say "Total: " + total(gifts) + " cents"</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>Feeding America: 620 cents
+Barry Cunningham: 500 cents
+Feeding America: 1342 cents
+Total: 2462 cents</pre></div>
+</div>
+<p>Two things to notice. <code>addgift</code> never says <code>give</code> — it does its work by growing the list it was handed (lists are shared: a change made through one name is seen through every name), and hands nothing back. And <code>total</code> walks the same list the Lesson 2 thread walked — but now the walk has a name, and the book will never have to write it again.</p>
+<h3>Your turn</h3>
+<p>Make a tool called <code>firstandlast</code>. It is handed a list and gives back its first and last items joined with " and ". Use it on <code>["sun", "moon", "stars"]</code>.</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="4" spellcheck="false" aria-label="Nifla program">make firstandlast(items) {
+    give items[0] + " and " + items[length(items) - 1]
+}
+say firstandlast(["sun", "moon", "stars"])</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>sun and stars</pre></div>
+</div></details>
+<h3>You can now…</h3>
+<ul><li>build a function with <code>make</code>, hand it values through</li></ul>
+<p>  parameters, and hand an answer back with <code>give</code>;</p>
+<ul><li>put loops and lists inside functions, each call with</li></ul>
+<p>  fresh shelves of its own;</p>
+<ul><li>grow a personal library of tools and build programs</li></ul>
+<p>  out of them;</p>
+<ul><li>add to a shared list from inside a function that</li></ul>
+<p>  gives nothing back.</p>
+<p>---</p>
+<div class="prevnext"><a href="lesson-3.html">← Lesson 3: Keeping many things</a><a href="lesson-5.html">Lesson 5: Kinds and nothing →</a></div>
+</main>
+<footer>
+<p>Nifla is a public-domain programming language by Tyler Kovalevich — programmed like JavaScript, runs like Swift, all the way down to an operating system. The language, this site, and everything on it are given away freely.</p>
+</footer>
+<script src="nifla.js"></script>
+<script src="site.js"></script>
+<script data-goatcounter="https://jesuslovestyler.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>

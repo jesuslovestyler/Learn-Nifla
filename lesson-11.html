@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson 11 — Capstone: the giving ledger, whole — Learn Nifla</title>
+<meta name="description" content="Lesson 11 of the Nifla tutorial: Capstone: the giving ledger, whole. Read it, run every example on the page, then take your turn.">
+<meta property="og:title" content="Lesson 11 — Capstone: the giving ledger, whole — Learn Nifla">
+<meta property="og:description" content="Lesson 11 of the Nifla tutorial: Capstone: the giving ledger, whole. Read it, run every example on the page, then take your turn.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lesson 11 — Capstone: the giving ledger, whole — Learn Nifla">
+<meta name="twitter:description" content="Lesson 11 of the Nifla tutorial: Capstone: the giving ledger, whole. Read it, run every example on the page, then take your turn.">
+<meta name="twitter:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #fdfbf7; color: #1d2733; line-height: 1.55; }
+main { max-width: 44rem; margin: 0 auto; padding: 1rem 1.1rem 3rem; }
+h1 { font-size: 1.7rem; line-height: 1.25; }
+h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+h3 { font-size: 1.12rem; margin-top: 1.8rem; }
+p { margin: 0.7rem 0; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92em; background: #eef1f4; padding: 0.05em 0.3em; border-radius: 4px; }
+.topbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between; padding: 0.7rem 1.1rem; background: #12355f; }
+.topbar a { color: #fff; text-decoration: none; }
+.homebtn { background: #fff; color: #12355f !important; font-weight: bold; padding: 0.35rem 0.8rem; border-radius: 999px; }
+.sitenav { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.95rem; }
+.sitenav a { text-decoration: underline; }
+.runbox { border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem; margin: 1rem 0; background: #fff; }
+.runbox textarea.code { width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.45; border: 1px solid #d7dee6; border-radius: 6px; padding: 0.55rem; background: #f7f9fb; color: #10233c; resize: vertical; }
+.runrow { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.55rem; }
+.runbtn { background: #12355f; color: #fff; border: 0; border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.98rem; cursor: pointer; }
+.runbtn:active { background: #0c2747; }
+.runhint { font-size: 0.85rem; color: #5a6a7a; }
+.runbox .out { margin: 0.6rem 0 0; background: #10233c; color: #d9f2d9; border-radius: 6px; padding: 0.55rem 0.7rem; white-space: pre-wrap; word-break: break-word; font-size: 0.92rem; }
+.runbox .out.err { background: #3c1414; color: #ffd9d9; }
+.expected { margin-top: 0.6rem; }
+.expected-label { margin: 0 0 0.25rem; font-size: 0.85rem; color: #5a6a7a; }
+.expected pre { margin: 0; background: #f1f4ec; border: 1px dashed #b9c4a8; border-radius: 6px; padding: 0.5rem 0.7rem; white-space: pre-wrap; font-size: 0.92rem; }
+pre.codeblock { background: #10233c; color: #e8eef4; border-radius: 8px; padding: 0.7rem 0.8rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.45; }
+.note { font-size: 0.9rem; color: #5a6a7a; font-style: italic; }
+details.answer { margin: 0.6rem 0 1rem; }
+details.answer summary { cursor: pointer; color: #12355f; font-weight: bold; }
+.lessonlist { list-style: none; padding: 0; }
+.lessonlist li { margin: 0.55rem 0; }
+.lessonlist a { display: block; background: #fff; border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem 0.9rem; color: #12355f; text-decoration: none; font-weight: bold; }
+.lessonlist a span { display: block; font-weight: normal; color: #5a6a7a; font-size: 0.9rem; margin-top: 0.15rem; }
+.prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; }
+.prevnext a { color: #12355f; }
+footer { max-width: 44rem; margin: 0 auto; padding: 0 1.1rem 2rem; font-size: 0.88rem; color: #5a6a7a; }
+</style>
+</head>
+<body>
+<div class="topbar">
+<a class="homebtn" href="https://jesuslovestyler.com/">⌂ Home</a>
+<nav class="sitenav">
+<a href="index.html">Lessons</a>
+<a href="try.html">Try Nifla</a>
+</nav>
+</div>
+<main>
+<h1>Lesson 11 — Capstone: the giving ledger, whole</h1>
+<p>You have been building this book since Lesson 1 — one gift said out loud, then a total, then gifts with names, then tools, then finding, then papers. One trick remains, and then the book can be assembled entire.</p>
+<h3>Step 1: reading numbers back</h3>
+<p>The loose end from Lesson 6: a file holds text, so the cents in <code>Feeding America|620</code> come back as the characters "620", not the number. But you own every tool needed to teach a program to read digits: <code>part</code> takes one character at a time, and <code>find</code> in the text "0123456789" turns a character into its value — "6" sits at place 6. Walk the characters, and build the number the way you would read it aloud: each new digit moves the value one place over (× 10) and adds in:</p>
+<div class="runbox">
+<textarea class="code" rows="12" spellcheck="false" aria-label="Nifla program">make digits(text) -&gt; number {
+    let value = 0
+    let i = 0
+    while i &lt; length(text) {
+        let d = find("0123456789", part(text, i, 1))
+        value = value * 10 + d
+        i = i + 1
+    }
+    give value
+}
+say digits("620")
+say digits("10000")</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>620
+10000</pre></div>
+</div>
+<p>Nothing new was needed — a loop from Lesson 2, two tools from Lesson 3, a function from Lesson 4. That is what a capstone is for: discovering that the pieces you already own compose into the thing you thought you couldn't do.</p>
+<p><strong>Your turn.</strong> Use <code>digits</code> to read "500" and say it with 5 added — the answer must be the number 505, not the text "5005".</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="11" spellcheck="false" aria-label="Nifla program">make digits(text) -&gt; number {
+    let value = 0
+    let i = 0
+    while i &lt; length(text) {
+        let d = find("0123456789", part(text, i, 1))
+        value = value * 10 + d
+        i = i + 1
+    }
+    give value
+}
+say digits("500") + 5</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>505</pre></div>
+</div></details>
+<h3>Step 2: the book loads and saves itself</h3>
+<p>Now the ledger's papers become a true round trip. Two tools carry it: <code>loadgifts</code> reads <code>ledger.txt</code> if it is there — splitting it into lines, splitting each line at its bar, reading the cents back with <code>digits</code> — and starts empty, kindly, if it is not. <code>savegifts</code> writes the book back in the same shape:</p>
+<div class="runbox">
+<textarea class="code" rows="24" spellcheck="false" aria-label="Nifla program">make digits(text) -&gt; number {
+    let value = 0
+    let i = 0
+    while i &lt; length(text) {
+        let d = find("0123456789", part(text, i, 1))
+        value = value * 10 + d
+        i = i + 1
+    }
+    give value
+}
+make loadgifts() {
+    let gifts = []
+    attempt {
+        let saved = readfile("ledger.txt")
+        if saved != "" {
+            let lines = split(saved, "\n")
+            for line in lines {
+                let fields = split(line, "|")
+                append(gifts, { who: fields[0], cents: digits(fields[1]) })
+            }
+        }
+    } if it fails {
+        say "A brand-new ledger."
+    }
+    give gifts
+}
+make savegifts(gifts) {
+    let lines = []
+    for gift in gifts {
+        append(lines, gift.who + "|" + gift.cents)
+    }
+    writefile("ledger.txt", join(lines, "\n"))
+}
+let gifts = loadgifts()
+append(gifts, { who: "Feeding America", cents: 620 })
+savegifts(gifts)
+for gift in gifts {
+    say gift.who + ": " + gift.cents + " cents"
+}</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>A brand-new ledger.
+Feeding America: 620 cents</pre></div>
+</div>
+<p>Run it twice on your machine. The second run says no "A brand-new ledger." — the book was there, it loaded, and now it holds <em>two</em> gifts to Feeding America. The book remembers. That small disappearance of one line is the whole of Lesson 6, paying off.</p>
+<h3>Step 3: the whole book</h3>
+<p>Everything, assembled. The tools from Lessons 4, 5, and 11; the papers from Lesson 6; the kindness of Lesson 7; ready to be compiled by Lesson 8 into a program that stands on its own. On its first run the book seeds itself with two opening gifts; on every later run it simply opens where it left off:</p>
+<div class="runbox">
+<textarea class="code" rows="24" spellcheck="false" aria-label="Nifla program">make digits(text) -&gt; number {
+    let value = 0
+    let i = 0
+    while i &lt; length(text) {
+        let d = find("0123456789", part(text, i, 1))
+        value = value * 10 + d
+        i = i + 1
+    }
+    give value
+}
+make loadgifts() {
+    let gifts = []
+    attempt {
+        let saved = readfile("ledger.txt")
+        if saved != "" {
+            let lines = split(saved, "\n")
+            for line in lines {
+                let fields = split(line, "|")
+                append(gifts, { who: fields[0], cents: digits(fields[1]) })
+            }
+        }
+    } if it fails {
+        say "A brand-new ledger."
+    }
+    give gifts
+}
+make savegifts(gifts) {
+    let lines = []
+    for gift in gifts {
+        append(lines, gift.who + "|" + gift.cents)
+    }
+    writefile("ledger.txt", join(lines, "\n"))
+}
+make addgift(gifts, who, cents) {
+    append(gifts, { who: who, cents: cents })
+}
+make total(gifts) {
+    let sum = 0
+    for gift in gifts {
+        sum = sum + gift.cents
+    }
+    give sum
+}
+make findgift(gifts, who) -&gt; maybe object {
+    for gift in gifts {
+        if gift.who == who {
+            give gift
+        }
+    }
+}
+let gifts = loadgifts()
+if length(gifts) == 0 {
+    addgift(gifts, "Feeding America", 620)
+    addgift(gifts, "Barry Cunningham", 500)
+    savegifts(gifts)
+}
+let found = findgift(gifts, "Barry Cunningham")
+if found == nothing {
+    say "No gift to Barry Cunningham is in the book."
+} else {
+    say "Barry Cunningham: " + found.cents + " cents"
+}
+let missing = findgift(gifts, "Noki")
+if missing == nothing {
+    say "No gift to Noki is in the book."
+}
+for gift in gifts {
+    say gift.who + ": " + gift.cents + " cents"
+}
+say "Total: " + total(gifts) + " cents"</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>A brand-new ledger.
+Barry Cunningham: 500 cents
+No gift to Noki is in the book.
+Feeding America: 620 cents
+Barry Cunningham: 500 cents
+Total: 1120 cents</pre></div>
+</div>
+<p>Read it once, top to bottom, slowly. There is nothing in it you did not learn in a small step, and nothing in it you could not now change with confidence: a new kind of report, a new question for the book to answer, a kinder message. That is the test of a course — not that you can repeat its programs, but that the programs have become <em>yours</em>.</p>
+<p>Compile it, as Lesson 8 taught, and it stands on its own:</p>
+<pre class="codeblock">./niflac ledger.nifla -o ledger
+./ledger</pre>
+<h3>Your turn</h3>
+<p>The book is yours now. In the final program, add one more opening gift — "Mother of Mercy", 250 cents — to the seeding (and save the book after seeding, as the program already does). Before you run it, say what the new total will be. Then run it and see.</p>
+<p>The new total is 1120 + 250 = <strong>1370 cents</strong>, reckoned before running — and the program agrees:</p>
+<details class="answer"><summary>The worked answer — try yours first, then peek</summary><div class="runbox">
+<textarea class="code" rows="24" spellcheck="false" aria-label="Nifla program">make digits(text) -&gt; number {
+    let value = 0
+    let i = 0
+    while i &lt; length(text) {
+        let d = find("0123456789", part(text, i, 1))
+        value = value * 10 + d
+        i = i + 1
+    }
+    give value
+}
+make loadgifts() {
+    let gifts = []
+    attempt {
+        let saved = readfile("ledger.txt")
+        if saved != "" {
+            let lines = split(saved, "\n")
+            for line in lines {
+                let fields = split(line, "|")
+                append(gifts, { who: fields[0], cents: digits(fields[1]) })
+            }
+        }
+    } if it fails {
+        say "A brand-new ledger."
+    }
+    give gifts
+}
+make savegifts(gifts) {
+    let lines = []
+    for gift in gifts {
+        append(lines, gift.who + "|" + gift.cents)
+    }
+    writefile("ledger.txt", join(lines, "\n"))
+}
+make addgift(gifts, who, cents) {
+    append(gifts, { who: who, cents: cents })
+}
+make total(gifts) {
+    let sum = 0
+    for gift in gifts {
+        sum = sum + gift.cents
+    }
+    give sum
+}
+make findgift(gifts, who) -&gt; maybe object {
+    for gift in gifts {
+        if gift.who == who {
+            give gift
+        }
+    }
+}
+let gifts = loadgifts()
+if length(gifts) == 0 {
+    addgift(gifts, "Feeding America", 620)
+    addgift(gifts, "Barry Cunningham", 500)
+    addgift(gifts, "Mother of Mercy", 250)
+    savegifts(gifts)
+}
+let found = findgift(gifts, "Barry Cunningham")
+if found == nothing {
+    say "No gift to Barry Cunningham is in the book."
+} else {
+    say "Barry Cunningham: " + found.cents + " cents"
+}
+let missing = findgift(gifts, "Noki")
+if missing == nothing {
+    say "No gift to Noki is in the book."
+}
+for gift in gifts {
+    say gift.who + ": " + gift.cents + " cents"
+}
+say "Total: " + total(gifts) + " cents"</textarea>
+<div class="runrow"><button class="runbtn" type="button">Run it</button><span class="runhint">Runs right here, in your browser.</span></div>
+<pre class="out" hidden></pre>
+<div class="expected"><p class="expected-label">The book says it answers:</p><pre>A brand-new ledger.
+Barry Cunningham: 500 cents
+No gift to Noki is in the book.
+Feeding America: 620 cents
+Barry Cunningham: 500 cents
+Mother of Mercy: 250 cents
+Total: 1370 cents</pre></div>
+</div></details>
+<h3>You can now…</h3>
+<ul><li>read numbers out of text with a <code>digits</code> tool built</li></ul>
+<p>  from <code>part</code> and <code>find</code>;</p>
+<ul><li>load and save a whole book of records as text lines,</li></ul>
+<p>  round trip, surviving between runs;</p>
+<ul><li>assemble everything — keeping, deciding, repeating,</li></ul>
+<p>  lists, objects, tools, kinds, nothing, papers,   attempts — into one real program, and compile it to   stand on its own.</p>
+<p>---</p>
+<h2>Where to go next</h2>
+<p>You have walked the whole path once. The shelf is still there when you need it: <code>PRIMER.md</code> keeps every word and tool of the language, one at a time, and the README in this repository is the language's full record — every stone of its building, in order, with the honest limits named. The suites (<code>examples/</code>, <code>checker-examples/</code>, <code>floor-examples/</code>, <code>bare-examples/</code>) are hundreds of small true programs to read and borrow from.</p>
+<p>Build something small that is yours: a garden log, a verse keeper, a book of your own keeping. Keep it exact, keep it kind, and when the checker stops you at the door, read its words slowly — it is on your side.</p>
+<p>And the promise from the opening, kept: you wrote like JavaScript the whole way — type, run, read — and your words ran with Swift's strength — checked, compiled, standing on their own. And the language you now hold is an operating system's language. Whatever you build next with it, you are building in the real thing.</p>
+<p>Welcome to Nifla.</p>
+<div class="prevnext"><a href="lesson-10.html">← Lesson 10: A first look downstairs</a><a href="try.html">Try Nifla →</a></div>
+</main>
+<footer>
+<p>Nifla is a public-domain programming language by Tyler Kovalevich — programmed like JavaScript, runs like Swift, all the way down to an operating system. The language, this site, and everything on it are given away freely.</p>
+</footer>
+<script src="nifla.js"></script>
+<script src="site.js"></script>
+<script data-goatcounter="https://jesuslovestyler.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
