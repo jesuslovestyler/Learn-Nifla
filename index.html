@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learn Nifla — the language, lesson by lesson</title>
+<meta name="description" content="Learn the Nifla programming language lesson by lesson, from hello world to an operating system. Every example runs right on the page.">
+<meta property="og:title" content="Learn Nifla — the language, lesson by lesson">
+<meta property="og:description" content="Learn the Nifla programming language lesson by lesson, from hello world to an operating system. Every example runs right on the page.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Learn Nifla — the language, lesson by lesson">
+<meta name="twitter:description" content="Learn the Nifla programming language lesson by lesson, from hello world to an operating system. Every example runs right on the page.">
+<meta name="twitter:image" content="https://jesuslovestyler.github.io/Learn-Nifla/og-image.png">
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Georgia, 'Times New Roman', serif; background: #fdfbf7; color: #1d2733; line-height: 1.55; }
+main { max-width: 44rem; margin: 0 auto; padding: 1rem 1.1rem 3rem; }
+h1 { font-size: 1.7rem; line-height: 1.25; }
+h2 { font-size: 1.35rem; margin-top: 2.2rem; }
+h3 { font-size: 1.12rem; margin-top: 1.8rem; }
+p { margin: 0.7rem 0; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92em; background: #eef1f4; padding: 0.05em 0.3em; border-radius: 4px; }
+.topbar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; justify-content: space-between; padding: 0.7rem 1.1rem; background: #12355f; }
+.topbar a { color: #fff; text-decoration: none; }
+.homebtn { background: #fff; color: #12355f !important; font-weight: bold; padding: 0.35rem 0.8rem; border-radius: 999px; }
+.sitenav { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.95rem; }
+.sitenav a { text-decoration: underline; }
+.runbox { border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem; margin: 1rem 0; background: #fff; }
+.runbox textarea.code { width: 100%; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.45; border: 1px solid #d7dee6; border-radius: 6px; padding: 0.55rem; background: #f7f9fb; color: #10233c; resize: vertical; }
+.runrow { display: flex; align-items: center; gap: 0.7rem; margin-top: 0.55rem; }
+.runbtn { background: #12355f; color: #fff; border: 0; border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.98rem; cursor: pointer; }
+.runbtn:active { background: #0c2747; }
+.runhint { font-size: 0.85rem; color: #5a6a7a; }
+.runbox .out { margin: 0.6rem 0 0; background: #10233c; color: #d9f2d9; border-radius: 6px; padding: 0.55rem 0.7rem; white-space: pre-wrap; word-break: break-word; font-size: 0.92rem; }
+.runbox .out.err { background: #3c1414; color: #ffd9d9; }
+.expected { margin-top: 0.6rem; }
+.expected-label { margin: 0 0 0.25rem; font-size: 0.85rem; color: #5a6a7a; }
+.expected pre { margin: 0; background: #f1f4ec; border: 1px dashed #b9c4a8; border-radius: 6px; padding: 0.5rem 0.7rem; white-space: pre-wrap; font-size: 0.92rem; }
+pre.codeblock { background: #10233c; color: #e8eef4; border-radius: 8px; padding: 0.7rem 0.8rem; overflow-x: auto; font-size: 0.9rem; line-height: 1.45; }
+.note { font-size: 0.9rem; color: #5a6a7a; font-style: italic; }
+details.answer { margin: 0.6rem 0 1rem; }
+details.answer summary { cursor: pointer; color: #12355f; font-weight: bold; }
+.lessonlist { list-style: none; padding: 0; }
+.lessonlist li { margin: 0.55rem 0; }
+.lessonlist a { display: block; background: #fff; border: 1px solid #c9d4e0; border-radius: 10px; padding: 0.7rem 0.9rem; color: #12355f; text-decoration: none; font-weight: bold; }
+.lessonlist a span { display: block; font-weight: normal; color: #5a6a7a; font-size: 0.9rem; margin-top: 0.15rem; }
+.prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; }
+.prevnext a { color: #12355f; }
+footer { max-width: 44rem; margin: 0 auto; padding: 0 1.1rem 2rem; font-size: 0.88rem; color: #5a6a7a; }
+</style>
+</head>
+<body>
+<div class="topbar">
+<a class="homebtn" href="https://jesuslovestyler.com/">⌂ Home</a>
+<nav class="sitenav">
+<a href="index.html">Lessons</a>
+<a href="try.html">Try Nifla</a>
+</nav>
+</div>
+<main>
+<h1>Learning Nifla — a tutorial in eleven lessons</h1>
+<p>Nifla is a small programming language that speaks in plain words. It was made to be read: if you can read a little JavaScript, you can read Nifla, and most of what surprises people is how little there is to memorize.</p>
+<p>This book is a <em>course</em>, not a reference. It assumes you are intelligent and that you have never programmed before, and it teaches programming itself — what a program is, what keeping a value means, why loops exist — by building real programs in Nifla, one small step at a time. Nothing in it is decorative: every idea arrives because the next program needs it, and you will run something real within the first minutes of every lesson.</p>
+<p>Here is the promise this course makes, plainly. You will <em>write</em> Nifla the way you write JavaScript: type a program, run it, see what it says — no ceremony, no waiting. And what you write will <em>run</em> with Swift's strength: checked before it runs, compiled to stand on its own, honest about kinds and about nothing. And by the end of the course you will have touched the very same language — not a teaching dialect, not a simplified subset for students — that an operating system, Cardnull OS 2, is written in. The words of your first <code>say "Hello, world"</code> are words that boot a computer.</p>
+<p>Three habits run through the whole course:</p>
+<ul><li><strong>One new idea at a time.</strong> Each step adds exactly one</li></ul>
+<p>  thing. If a program below ever looks like two new ideas   at once, the book has failed, not you — re-read the step   before it.</p>
+<ul><li><strong>Your turn, constantly.</strong> After nearly every idea there</li></ul>
+<p>  is a tiny exercise. Try it before you peek: the worked   answer stands right after it, set apart, and struggling   for two minutes teaches more than reading for twenty.</p>
+<ul><li><strong>One program, growing.</strong> A single project — a *giving</li></ul>
+<p>  ledger*, a little book that keeps a record of gifts —   grows quietly at the end of most lessons, one piece at a   time. By the last lesson you will have built it entire,   and you will recognize every piece, because you built   each one when it was small.</p>
+<p>The language's other book, <code>PRIMER.md</code>, is the reference shelf: every word and every tool, one at a time. When a lesson here leaves you wondering "what else can this word do?", the Primer is where to look it up. This tutorial teaches the path; the Primer keeps the whole map.</p>
+<p>Three programs carry the language:</p>
+<ul><li><code>nifla program.nifla</code> — checks a program, then runs it.</li><li><code>niflac program.nifla</code> — checks it, then compiles it</li></ul>
+<p>  into a program that stands on its own. With <code>--bare</code> it   compiles a smaller, sterner subset of the language into   a binary that boots on bare metal, with no operating   system underneath; with <code>--bare --guest --feather</code> it   makes a <em>feather</em> — a guest program with its card laid   on it, the form a host's door receives (Lesson 9).</p>
+<ul><li><code>feathercheck program.feather</code> — reads a feather and</li></ul>
+<p>  answers, in plain words, whether its card is true.</p>
+<p>In this repository, one command builds all three:</p>
+<pre class="codeblock">./build.sh</pre>
+<p>That leaves <code>./nifla</code>, <code>./niflac</code>, and <code>./feathercheck</code> standing in the folder, ready to use.</p>
+<p>Every example in this book is real. A standing proof (<code>run-tutorial.sh</code>) takes each program out of the book and runs it — interpreted, and compiled where it can be — and the proof fails if any program's output drifts from what the book says. The proof runs every example with the same two program arguments, <code>Ada</code> and <code>Byron</code> (Lesson 8 shows what program arguments are), and it runs each example in a fresh, empty folder, so the lessons that write files (Lesson 6 onward) always start in an empty room — on your own machine, those files will still be there the second time you run the program, and that difference is itself one of the lessons.</p>
+<p>A word about errors, before we start: when a Nifla program goes wrong, the language answers in plain words, with the line number, and tries to say what would fix it. And before a program runs at all, a <em>checker</em> reads it and refuses — in the same plain words — programs it can prove will go wrong in certain ways. You will meet the checker properly in Lesson 5. It is a kind character in this story: it would rather stop you at the door, with an explanation, than let you fall down the stairs.</p>
+<p>---</p>
+<ul class="lessonlist">
+<li><a href="lesson-1.html">Lesson 1 — Saying and keeping<span>Read it, run it, then try your turn — every example runs right on the page.</span></a></li>
+<li><a href="lesson-2.html">Lesson 2 — Deciding and repeating<span>Read it, run it, then try your turn — every example runs right on the page.</span></a></li>
+<li><a href="lesson-3.html">Lesson 3 — Keeping many things<span>Read it, run it, then try your turn — every example runs right on the page.</span></a></li>
+<li><a href="lesson-4.html">Lesson 4 — Making your own tools<span>Read it, run it, then try your turn — every example runs right on the page.</span></a></li>
+<li><a href="lesson-5.html">Lesson 5 — Kinds and nothing<span>Read it, run it, then try your turn — every example runs right on the page.</span></a></li>
+<li><a href="lesson-6.html">Lesson 6 — Papers that stay<span>Read it, run it, then try your turn — every example runs right on the page.</span></a></li>
+<li><a href="lesson-7.html">Lesson 7 — When things go wrong<span>Read it, run it, then try your turn — every example runs right on the page.</span></a></li>
+<li><a href="lesson-8.html">Lesson 8 — Standing on its own<span>Read it, run it, then try your turn — every example runs right on the page.</span></a></li>
+<li><a href="lesson-9.html">Lesson 9 — Your first feather<span>Read it, run it, then try your turn — every example runs right on the page.</span></a></li>
+<li><a href="lesson-10.html">Lesson 10 — A first look downstairs<span>Read it, run it, then try your turn — every example runs right on the page.</span></a></li>
+<li><a href="lesson-11.html">Lesson 11 — Capstone: the giving ledger, whole<span>Read it, run it, then try your turn — every example runs right on the page.</span></a></li>
+</ul>
+<h2>Try Nifla</h2>
+<p>Or skip ahead and write your own program in the <a href="try.html">Try Nifla playground</a> — the whole language, in the browser, with the checker watching over it.</p>
+
+</main>
+<footer>
+<p>Nifla is a public-domain programming language by Tyler Kovalevich — programmed like JavaScript, runs like Swift, all the way down to an operating system. The language, this site, and everything on it are given away freely.</p>
+</footer>
+<script src="nifla.js"></script>
+<script src="site.js"></script>
+<script data-goatcounter="https://jesuslovestyler.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
