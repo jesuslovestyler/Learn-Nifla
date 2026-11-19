@@ -10,9 +10,10 @@
 // runs and refuses what it can prove wrong, in the same
 // plain words the Swift implementation speaks; the run
 // answers in the same plain words too, line numbers and all.
-// The runaway guards are the same: a million loop passes,
-// five hundred calls deep, sixteen megabytes in one block
-// of bytes.
+// The runaway guards are the same: a million passes for
+// one loop's run (each loop starts with a fresh count of
+// its own, Stone 33), five hundred calls deep, sixteen
+// megabytes in one block of bytes.
 //
 // What this door does NOT run, honestly: bare metal,
 // guests and feathers, and the compiler. Those belong to
@@ -214,6 +215,13 @@ function utf8Encode(text) {
 
 function utf8DecodeStrict(bytes) {
   return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+}
+
+// Stone 28: reading bytes as text, the way 'astext' does —
+// a run of bytes that is not a letter stands in the text
+// as the replacement mark, never dropped, never guessed.
+function utf8Decode(bytes) {
+  return new TextDecoder('utf-8').decode(bytes);
 }
 
 // ----------------------------------------------------------------
@@ -1102,6 +1110,18 @@ const BUILTIN_TOOLS = {
   sorted: { params: ['list'], example: 'sorted(items)' },
   fieldnames: { params: ['object'], example: 'fieldnames(person)' },
   removefield: { params: ['object', 'name'], example: 'removefield(person, "town")' },
+  asnumber: { params: ['text'], example: 'asnumber("620")' },
+  bitand: { params: ['first', 'second'], example: 'bitand(12, 10)' },
+  bitor: { params: ['first', 'second'], example: 'bitor(12, 10)' },
+  bitxor: { params: ['first', 'second'], example: 'bitxor(12, 10)' },
+  astext: { params: ['bytes'], example: 'astext(block)' },
+  wholediv: { params: ['first', 'second'], example: 'wholediv(17, 5)' },
+  leftover: { params: ['first', 'second'], example: 'leftover(17, 5)' },
+  rounddown: { params: ['value'], example: 'rounddown(3.5)' },
+  roundup: { params: ['value'], example: 'roundup(3.5)' },
+  absolute: { params: ['value'], example: 'absolute(-7)' },
+  smallest: { params: ['first', 'second'], example: 'smallest(3, 7)' },
+  largest: { params: ['first', 'second'], example: 'largest(3, 7)' },
 };
 
 // The plain-words message for a call to a built-in tool with
@@ -1113,6 +1133,173 @@ function builtinCountMessage(name, def, given) {
   else if (def.params.length === 1) takes = '1 value (' + def.params[0] + ')';
   else takes = def.params.length + ' values (' + def.params.join(', ') + ')';
   return "The tool '" + name + "' takes " + takes + ', but it was given ' + given + '. Call it like: ' + def.example + '.';
+}
+
+// Stone 26: reading a number out of text, the 'asnumber'
+// tool's work — the same steps as the Swift mirrors, so
+// every door reads the same text to the same number. The
+// accepted writing is plain: a '-' first when the number
+// is below zero, then digits, then — if a fraction is
+// wanted — one '.' and more digits. Anything else, and a
+// number too big to hold, come back as null.
+function readNumberText(text) {
+  const chars = graphemes(text);
+  const digit = (ch) => (ch.length === 1 && ch >= '0' && ch <= '9' ? ch.charCodeAt(0) - 48 : null);
+  let i = 0;
+  let negative = false;
+  if (i < chars.length && chars[i] === '-') { negative = true; i += 1; }
+  let whole = 0;
+  let wholeDigits = 0;
+  while (i < chars.length) {
+    const d = digit(chars[i]);
+    if (d === null) break;
+    whole = whole * 10 + d;
+    wholeDigits += 1;
+    i += 1;
+  }
+  if (wholeDigits === 0) return null;
+  let value = whole;
+  if (i < chars.length && chars[i] === '.') {
+    i += 1;
+    let fraction = 0;
+    let scale = 1;
+    let fractionDigits = 0;
+    while (i < chars.length) {
+      const d = digit(chars[i]);
+      if (d === null) break;
+      fraction = fraction * 10 + d;
+      scale *= 10;
+      fractionDigits += 1;
+      i += 1;
+    }
+    if (fractionDigits === 0) return null;
+    value = whole + fraction / scale;
+  }
+  if (i !== chars.length) return null;
+  const signed = negative ? -value : value;
+  if (!Number.isFinite(signed)) return null;
+  return signed === 0 ? 0 : signed;
+}
+
+// Stone 27: working with bits, the 'bitand', 'bitor', and
+// 'bitxor' tools' shared work. A bit tool can only count
+// the bits of a whole number from zero up, no bigger than
+// the language's numbers hold exactly — 2^53, the reach
+// the feather reckoning already trusts. Anything else is
+// a problem 'attempt' can catch, said in plain words:
+// a fraction has no bits to count, bits below zero have
+// no plain counting, and past the exact reach the bits
+// could not be counted honestly.
+function bitToolNumber(value, tool, line) {
+  if (typeof value !== 'number') {
+    throw new NiflaError(line, "'" + tool + "' needs a whole number to work on, but it was given " + describedOf(value) + '.');
+  }
+  if (value !== Math.round(value)) {
+    throw new NiflaError(line, "'" + tool + "' works on whole numbers — bits are counted in whole numbers — but it was given " + formatNumber(value) + '. Use a whole number, like ' + formatNumber(Math.floor(value)) + ' or ' + formatNumber(Math.ceil(value)) + '.');
+  }
+  if (value < 0) {
+    throw new NiflaError(line, "'" + tool + "' works on whole numbers from zero up — bits below zero have no plain counting — but it was given " + formatNumber(value) + '.');
+  }
+  if (value > 9007199254740992) {
+    throw new NiflaError(line, "'" + tool + "' works on whole numbers up to 9007199254740992, as far as the language's numbers stay exact, but it was given a bigger one.");
+  }
+  return value;
+}
+
+// The bits themselves, counted the same way in every
+// mirror: place by place from the ones place up, each
+// number halved as its bit is read — the very steps the
+// self-made feather checker's 'xorbyte' walks by hand.
+// 'keep' says whether a place stands in the answer,
+// given the two numbers' bits at that place.
+function combineBits(a, b, keep) {
+  let x = a;
+  let y = b;
+  let place = 1;
+  let out = 0;
+  while (x > 0 || y > 0) {
+    const xBit = x % 2;
+    const yBit = y % 2;
+    if (keep(xBit === 1, yBit === 1)) {
+      out += place;
+    }
+    x = (x - xBit) / 2;
+    y = (y - yBit) / 2;
+    place *= 2;
+  }
+  return out;
+}
+
+// Stone 30: dividing into whole numbers, the 'wholediv'
+// tool's work. '/' gives the true quotient with its
+// fraction; 'wholediv' gives the whole part alone, the
+// fraction dropped toward zero — the way Swift's whole
+// numbers divide, so wholediv(-7, 2) is -3. The numbers
+// handed to it must themselves be whole, no bigger in
+// size than the language's numbers hold exactly — 2^53,
+// the reach the feather reckoning already trusts. A
+// fraction, or a bigger one, is a problem 'attempt' can
+// catch, said in plain words; dividing by zero is the
+// same problem '/' raises, in the same words.
+function wholeDivNumber(value, tool, role, line) {
+  if (typeof value !== 'number') {
+    throw new NiflaError(line, "'" + tool + "' needs " + role + ', but it was given ' + describedOf(value) + '.');
+  }
+  if (value !== Math.round(value)) {
+    throw new NiflaError(line, "'" + tool + "' works on whole numbers — it is the dividing that drops the fraction, not the numbers handed to it — but it was given " + formatNumber(value) + '. Use a whole number, like ' + formatNumber(Math.floor(value)) + ' or ' + formatNumber(Math.ceil(value)) + '.');
+  }
+  if (value > 9007199254740992 || value < -9007199254740992) {
+    throw new NiflaError(line, "'" + tool + "' works on whole numbers up to 9007199254740992 in size, as far as the language's numbers stay exact, but it was given a bigger one.");
+  }
+  return value;
+}
+
+// The quotient itself, counted the same way in every
+// mirror: by doubling chunks of the divisor, the way a
+// person divides on paper — take the biggest doubled
+// chunk that still fits, take it away, and count how
+// many it stood for — so every step is whole-number
+// work the language's numbers hold exactly, and no
+// mirror's own division can round the answer its own
+// way. 'a' is the size of the number divided (zero or
+// more) and 'b' the size of the number it is divided
+// by (one or more); the sign is the caller's to restore.
+function wholeQuotient(a, b) {
+  let rest = a;
+  let quotient = 0;
+  while (rest >= b) {
+    let chunk = b;
+    let count = 1;
+    while (chunk + chunk <= rest) {
+      chunk += chunk;
+      count += count;
+    }
+    rest -= chunk;
+    quotient += count;
+  }
+  return quotient;
+}
+
+// Stone 31: what a dividing leaves, the 'leftover'
+// tool's work — the rest of the divided number after
+// the divisor has been taken out of it 'wholediv'
+// times. It is counted by the same doubling steps as
+// the quotient: what remains when the last chunk is
+// taken away. The sign is the divided number's, the
+// way Swift's whole numbers leave it, so the two
+// always add back up: wholediv(n, d) * d + leftover
+// (n, d) is n. Until this stone the leftover was
+// counted in the open, as n - wholediv(n, d) * d.
+function wholeRest(a, b) {
+  let rest = a;
+  while (rest >= b) {
+    let chunk = b;
+    while (chunk + chunk <= rest) {
+      chunk += chunk;
+    }
+    rest -= chunk;
+  }
+  return rest;
 }
 
 function takesText(params) {
@@ -1222,6 +1409,18 @@ const BUILTIN_RULES = {
   sorted: { result: 'list', needs: [{ kinds: ['list'], need: 'a list to sort' }] },
   fieldnames: { result: 'list', needs: [{ kinds: ['object'], need: 'an object to list the field names of' }] },
   removefield: { result: 'unknown', needs: [{ kinds: ['object'], need: 'an object to take a field from' }, { kinds: ['text'], need: 'the name of a field, as text' }] },
+  asnumber: { result: 'number', needs: [{ kinds: ['text'], need: 'some text to read a number from' }] },
+  bitand: { result: 'number', needs: [{ kinds: ['number'], need: 'a whole number to work on' }, { kinds: ['number'], need: 'a whole number to work on' }] },
+  bitor: { result: 'number', needs: [{ kinds: ['number'], need: 'a whole number to work on' }, { kinds: ['number'], need: 'a whole number to work on' }] },
+  bitxor: { result: 'number', needs: [{ kinds: ['number'], need: 'a whole number to work on' }, { kinds: ['number'], need: 'a whole number to work on' }] },
+  astext: { result: 'text', needs: [{ kinds: ['bytes'], need: 'a block of bytes to read as text' }] },
+  wholediv: { result: 'number', needs: [{ kinds: ['number'], need: 'a whole number to divide' }, { kinds: ['number'], need: 'a whole number to divide by' }] },
+  leftover: { result: 'number', needs: [{ kinds: ['number'], need: 'a whole number to divide' }, { kinds: ['number'], need: 'a whole number to divide by' }] },
+  rounddown: { result: 'number', needs: [{ kinds: ['number'], need: 'a number to round' }] },
+  absolute: { result: 'number', needs: [{ kinds: ['number'], need: 'a number to take the size of' }] },
+  smallest: { result: 'number', needs: [{ kinds: ['number'], need: 'a number to choose between' }, { kinds: ['number'], need: 'a number to choose between' }] },
+  largest: { result: 'number', needs: [{ kinds: ['number'], need: 'a number to choose between' }, { kinds: ['number'], need: 'a number to choose between' }] },
+  roundup: { result: 'number', needs: [{ kinds: ['number'], need: 'a number to round' }] },
 };
 
 // The checker's picture of the scopes: a stack of blocks,
@@ -1881,6 +2080,13 @@ class Checker {
     // The ranges the checker can prove, and the facts the
     // list tools change.
     this.checkBuiltinRanges(name, args, env, line);
+    // Stone 30: a 'wholediv' whose divisor the checker
+    // can prove is zero is a division by zero, refused
+    // in the same words as '/'. Stone 31's 'leftover'
+    // is a dividing too, checked the same.
+    if (name === 'wholediv' || name === 'leftover') {
+      this.checkDivisor('/', args[1], env, line);
+    }
     if (name === 'append' || name === 'insertat' || name === 'removeat') {
       if (args[0].t === 'var') {
         env.forgetFacts(args[0].name);
@@ -2806,10 +3012,13 @@ class Scope {
 
 class Interpreter {
   constructor(store, args) {
-    // The runaway guard: a kindness limit on the total
-    // number of loop passes in one run, across every loop
-    // in the program.
-    this.loopPasses = 0;
+    // The runaway guard, re-counted by Stone 33 the way
+    // the Swift interpreter counts it: a kindness limit of
+    // a million passes on ONE loop's run — each time a loop
+    // starts, it is given a fresh count of its own, kept on
+    // this stack. A program of many loops, each finishing,
+    // may pass a million times in all and run on.
+    this.loopBudgets = [];
     this.loopPassLimit = 1000000;
     // The call-depth guard: how many calls are running at
     // once, one inside another.
@@ -2828,9 +3037,23 @@ class Interpreter {
   }
 
   tickLoop(line) {
-    this.loopPasses += 1;
-    if (this.loopPasses > this.loopPassLimit) {
+    if (this.loopBudgets.length === 0) this.loopBudgets.push(0);
+    const top = this.loopBudgets.length - 1;
+    this.loopBudgets[top] += 1;
+    if (this.loopBudgets[top] > this.loopPassLimit) {
       throw new NiflaError(line, 'This loop ran more than a million times and was stopped — it may never end. Check the condition, and make sure something inside the loop changes each time around, so it can finish.');
+    }
+  }
+
+  // Runs one loop's whole run under a fresh pass budget of
+  // its own (Stone 33): the budget is laid down as the loop
+  // starts and lifted however the loop ends.
+  withLoopBudget(body) {
+    this.loopBudgets.push(0);
+    try {
+      body();
+    } finally {
+      this.loopBudgets.pop();
     }
   }
 
@@ -2903,16 +3126,18 @@ class Interpreter {
         // inside is new each pass, while setting a variable
         // reaches the one outside — that is how counting
         // works.
-        while (true) {
-          const value = this.evaluate(statement.cond, scope);
-          if (typeof value !== 'boolean') {
-            throw new NiflaError(statement.line, "'while' needs a true or false value to decide with, but here it was given " + describedOf(value) + '. Try a comparison, like: while years < 40 { ... }');
+        this.withLoopBudget(() => {
+          while (true) {
+            const value = this.evaluate(statement.cond, scope);
+            if (typeof value !== 'boolean') {
+              throw new NiflaError(statement.line, "'while' needs a true or false value to decide with, but here it was given " + describedOf(value) + '. Try a comparison, like: while years < 40 { ... }');
+            }
+            if (!value) break;
+            this.tickLoop(statement.line);
+            const child = new Scope(scope);
+            for (const inner of statement.body) this.execute(inner, child);
           }
-          if (!value) break;
-          this.tickLoop(statement.line);
-          const child = new Scope(scope);
-          for (const inner of statement.body) this.execute(inner, child);
-        }
+        });
         return;
       }
 
@@ -2931,12 +3156,14 @@ class Interpreter {
           throw new NiflaError(statement.line, "'repeat' was told to run " + formatNumber(count) + ' times, but a loop can only run a whole number of times. Use a whole number instead, like ' + formatNumber(Math.floor(count)) + ' or ' + formatNumber(Math.ceil(count)) + '.');
         }
         let done = 0;
-        while (done < count) {
-          this.tickLoop(statement.line);
-          const child = new Scope(scope);
-          for (const inner of statement.body) this.execute(inner, child);
-          done += 1;
-        }
+        this.withLoopBudget(() => {
+          while (done < count) {
+            this.tickLoop(statement.line);
+            const child = new Scope(scope);
+            for (const inner of statement.body) this.execute(inner, child);
+            done += 1;
+          }
+        });
         return;
       }
 
@@ -2955,12 +3182,14 @@ class Interpreter {
         } else {
           throw new NiflaError(statement.line, "'for' needs a list, some text, or a block of bytes to walk through, but here it was given " + describedOf(over) + '. Write it like: for item in items { ... }');
         }
-        for (const item of items) {
-          this.tickLoop(statement.line);
-          const child = new Scope(scope);
-          child.declare(statement.name, item);
-          for (const inner of statement.body) this.execute(inner, child);
-        }
+        this.withLoopBudget(() => {
+          for (const item of items) {
+            this.tickLoop(statement.line);
+            const child = new Scope(scope);
+            child.declare(statement.name, item);
+            for (const inner of statement.body) this.execute(inner, child);
+          }
+        });
         return;
       }
 
@@ -3371,6 +3600,135 @@ class Interpreter {
         return block;
       }
 
+      case 'asnumber': {
+        // Stone 26: a number read out of text. Text that
+        // isn't a number written plainly is a problem,
+        // and 'attempt' can catch it.
+        if (typeof args[0] !== 'string') {
+          throw new NiflaError(line, "'asnumber' needs some text to read a number from, but it was given " + describedOf(args[0]) + '.');
+        }
+        const value = readNumberText(args[0]);
+        if (value === null) {
+          throw new NiflaError(line, "'" + args[0] + "' is not a number 'asnumber' can read. A number is written with digits, a '-' first when it is below zero, and at most one '.' with digits after it — like 620 or -3.5.");
+        }
+        return value;
+      }
+
+      case 'bitand':
+      case 'bitor':
+      case 'bitxor': {
+        // Stone 27: the bit tools — a bit stands in
+        // the answer when it stands in both numbers
+        // (bitand), in either one (bitor), or in one
+        // but not the other (bitxor). The work the
+        // self-made feather checker does by hand in
+        // its 'xorbyte', given single words at last.
+        const first = bitToolNumber(args[0], name, line);
+        const second = bitToolNumber(args[1], name, line);
+        if (name === 'bitand') return combineBits(first, second, (x, y) => x && y);
+        if (name === 'bitor') return combineBits(first, second, (x, y) => x || y);
+        return combineBits(first, second, (x, y) => x !== y);
+      }
+
+      case 'astext': {
+        // Stone 28: the text of a block of bytes — the
+        // road back from bytes to text. The bytes are
+        // read as UTF-8; a run of bytes that is not a
+        // letter stands in the text as the replacement
+        // mark, the way every reader shows it — never
+        // dropped, never guessed at.
+        if (!(args[0] instanceof NBytes)) {
+          throw new NiflaError(line, "'astext' needs a block of bytes to read as text, but it was given " + describedOf(args[0]) + '.');
+        }
+        return utf8Decode(args[0].data);
+      }
+
+      case 'wholediv': {
+        // Stone 30: dividing into whole numbers —
+        // the whole part of the quotient, the
+        // fraction dropped toward zero. The work
+        // the self-made feather checker does by
+        // hand in its 'floordiv', given a single
+        // word at last.
+        const first = wholeDivNumber(args[0], name, 'a whole number to divide', line);
+        const second = wholeDivNumber(args[1], name, 'a whole number to divide by', line);
+        if (second === 0) {
+          throw new NiflaError(line, "I can't divide by zero. Dividing needs a second number that isn't zero.");
+        }
+        const quotient = wholeQuotient(Math.abs(first), Math.abs(second));
+        if (quotient === 0) return 0;
+        return (first < 0) !== (second < 0) ? -quotient : quotient;
+      }
+
+      case 'leftover': {
+        // Stone 31: what a dividing leaves — the
+        // rest of the divided number after the
+        // divisor has been taken out of it
+        // 'wholediv' times, carrying the divided
+        // number's sign. Counted in the open until
+        // this stone, as n - wholediv(n, d) * d.
+        const first = wholeDivNumber(args[0], name, 'a whole number to divide', line);
+        const second = wholeDivNumber(args[1], name, 'a whole number to divide by', line);
+        if (second === 0) {
+          throw new NiflaError(line, "I can't divide by zero. Dividing needs a second number that isn't zero.");
+        }
+        const rest = wholeRest(Math.abs(first), Math.abs(second));
+        if (rest === 0) return 0;
+        return first < 0 ? -rest : rest;
+      }
+
+      case 'rounddown':
+      case 'roundup': {
+        // Stone 32: rounding a number to a whole
+        // number — the whole number at or below it
+        // (rounddown) or at or above it (roundup).
+        // Until this stone the language had no
+        // rounding word at all: the whole-number
+        // tools refuse fractions, and finding the
+        // whole number at or below one meant
+        // reading its spoken form apart.
+        if (typeof args[0] !== 'number') {
+          throw new NiflaError(line, "'" + name + "' needs a number to round, but it was given " + describedOf(args[0]) + '.');
+        }
+        return name === 'rounddown' ? Math.floor(args[0]) : Math.ceil(args[0]);
+      }
+
+      case 'absolute': {
+        // Stone 34: a number's size, never below
+        // nothing — below-zero numbers come back
+        // with the sign lifted off, the rest come
+        // back as they are, fractions keeping
+        // their fraction. The word was first built
+        // by hand as 'absn' in the Cardnull OS
+        // calculator feather — a bare-metal guest,
+        // which is why this word stands on every
+        // door at once, bare metal included.
+        if (typeof args[0] !== 'number') {
+          throw new NiflaError(line, "'absolute' needs a number to take the size of, but it was given " + describedOf(args[0]) + '.');
+        }
+        return Math.abs(args[0]);
+      }
+
+      case 'smallest':
+      case 'largest': {
+        // Stone 35: choosing between two numbers —
+        // the smaller of the two, or the larger.
+        // The Cardnull OS kernel spells this choice
+        // out by hand wherever it keeps a window on
+        // the desktop, two 'if's at a time, window
+        // after window; together the pair is also
+        // the clamp the kernel keeps writing:
+        // largest(0, smallest(place, limit)) holds
+        // a number between two bounds.
+        if (typeof args[0] !== 'number') {
+          throw new NiflaError(line, "'" + name + "' needs numbers to choose between, but it was given " + describedOf(args[0]) + '.');
+        }
+        if (typeof args[1] !== 'number') {
+          throw new NiflaError(line, "'" + name + "' needs numbers to choose between, but it was given " + describedOf(args[1]) + '.');
+        }
+        return name === 'smallest' ? Math.min(args[0], args[1]) : Math.max(args[0], args[1]);
+      }
+
       case 'writefile': {
         if (typeof args[0] !== 'string') {
           throw new NiflaError(line, "'writefile' needs the name of a file, as text, but it was given " + describedOf(args[0]) + '.');
@@ -3676,7 +4034,15 @@ class Interpreter {
       }
 
       case 'neg': {
-        const value = this.evaluate(expression.expr, scope);
+        // Stone 30: the parser calls the wrapped value
+        // 'inner' — as the checker, the constant reckoning,
+        // and the floor collector all read it — and this
+        // case once read 'expr', so any program that put a
+        // minus sign in front of a value stopped the web
+        // interpreter outright. Stone 30's examples are the
+        // first in the corpus to divide a negative number,
+        // and they found it.
+        const value = this.evaluate(expression.inner, scope);
         if (typeof value !== 'number') {
           throw new NiflaError(expression.line, 'I can only put a minus sign in front of a number, but here it was in front of ' + describedOf(value) + '.');
         }
